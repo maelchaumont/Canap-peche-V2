@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.FenetrePrincipale">
+
+    <top><Button BorderPane.alignment="TOP_CENTER" fx:id="btnBleu" text="texteHaut" onAction="#clicBtnBleu"/></top>
+    <bottom><Button BorderPane.alignment="BOTTOM_CENTER" fx:id="btnRouge" text="texteBas" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></bottom>
+    <left><Button BorderPane.alignment="CENTER_LEFT" fx:id="btnJaune" text="texteGauche" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></left>
+    <right><Button BorderPane.alignment="CENTER_RIGHT" fx:id="btnVert" text="texteDroite" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></right>
+    <center><Canvas fx:id="painting" height="100" width="100"/></center>
+</BorderPane>
