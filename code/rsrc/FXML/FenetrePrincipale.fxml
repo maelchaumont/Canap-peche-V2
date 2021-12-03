@@ -7,13 +7,35 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.FenetrePrincipale">
 
-    <top><Button BorderPane.alignment="TOP_CENTER" fx:id="btnBleu" text="Bleu" onAction="#clicBtnBleu"/></top>
-    <bottom><Button BorderPane.alignment="BOTTOM_CENTER" fx:id="btnRouge" text="Rouge" onAction="#clicBtnRouge" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></bottom>
-    <left><Button BorderPane.alignment="CENTER_LEFT" fx:id="btnJaune" text="Jaune" onAction="#clicBtnJaune" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></left>
-    <right><Button BorderPane.alignment="CENTER_RIGHT" fx:id="btnVert" text="Vert" onAction="#clicBtnVert" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></right>
-    <center><Canvas fx:id="painting" height="100" width="100"/></center>
+    <left>
+        <TextField fx:id="chronometer">
+
+        </TextField>
+    </left>
+
+    <top>
+        <ImageView>
+            <Image fx:id="img1" url="@../img/lake.png"/>
+        </ImageView>
+
+        <ImageView>
+            <Image fx:id="img2" url="@../img/grass.png"/>
+        </ImageView>
+    </top>
+
+    <bottom>
+    <BorderPane>
+        <top><Button BorderPane.alignment="TOP_CENTER" fx:id="btnBleu" text="Bleu" onAction="#clicBtnBleu"/></top>
+        <bottom><Button BorderPane.alignment="BOTTOM_CENTER" fx:id="btnRouge" text="Rouge" onAction="#clicBtnRouge" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></bottom>
+        <left><Button BorderPane.alignment="CENTER_LEFT" fx:id="btnJaune" text="Jaune" onAction="#clicBtnJaune" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></left>
+        <right><Button BorderPane.alignment="CENTER_RIGHT" fx:id="btnVert" text="Vert" onAction="#clicBtnVert" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"/></right>
+        <center><Canvas fx:id="painting" height="100" width="100"/></center>
+    </BorderPane>
+    </bottom>
 </BorderPane>
