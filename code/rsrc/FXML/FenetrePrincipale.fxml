@@ -21,11 +21,7 @@
 
     <top>
         <ImageView>
-            <Image fx:id="img1" url="@../img/lake.png"/>
-        </ImageView>
-
-        <ImageView>
-            <Image fx:id="img2" url="@../img/grass.png"/>
+            <Image fx:id="img1" url="@../img/fullLake.png"/>
         </ImageView>
     </top>
 

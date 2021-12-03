@@ -25,12 +25,12 @@ public class FenetrePrincipale {
     @FXML
     private TextField chronometer;
 
-    public FenetrePrincipale() {
+    public FenetrePrincipale() {/*
         //timer
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(3000),
                 ae -> view.FenetrePrincipale.writeSpentTime()));
-        timeline.play();
+        timeline.play();*/
     }
 
     public void writeSpentTime() {
