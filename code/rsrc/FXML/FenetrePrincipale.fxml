@@ -19,9 +19,13 @@
         </TextField>
     </left>
 
+    <!--
+    <right>
+        <SubScene></SubScene>
+    </right>-->
+
     <top>
-        <ImageView>
-            <Image fx:id="img1" url="@../img/fullLake.png"/>
+        <ImageView fx:id="imgView1">
         </ImageView>
     </top>
 

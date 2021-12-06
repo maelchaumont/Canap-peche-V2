@@ -1,23 +1,32 @@
 package view;
 
+import fxtimer.FXTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class FenetrePrincipale {
-    @FXML
-    private Image img1;
+    private Image img1 = new Image("/img/fullLake.png");
+    private FXTimer timer = new FXTimer();
 
     @FXML
-    private Image img2;
+    private ImageView imgView1;
+
+    @FXML
+    private SubScene realChronometer;
 
     @FXML
     private Canvas painting;
@@ -25,17 +34,13 @@ public class FenetrePrincipale {
     @FXML
     private TextField chronometer;
 
-    public FenetrePrincipale() {/*
-        //timer
-        Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(3000),
-                ae -> view.FenetrePrincipale.writeSpentTime()));
-        timeline.play();*/
+    @FXML
+    public void initialize() { //pour les contrôleurs utiliser initialize() au lieu du constructeur
+        imgView1.setImage(img1);
+        //Parent root = new FXTimer();
+        //realChronometer = new SubScene(root, 100, 100);
     }
 
-    public void writeSpentTime() {
-        chronometer.setText("qqchose");
-    }
 
 
     @FXML
