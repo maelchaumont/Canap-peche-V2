@@ -1,11 +1,11 @@
 package classes;
 
-public class Joueur {
+public class Pecheur {
     private String pseudo;
     private int score;
 
     //constructeur
-    public Joueur(String pseudo, int score) {
+    public Pecheur(String pseudo, int score) {
         this.pseudo = pseudo;
         this.score = score;
     }

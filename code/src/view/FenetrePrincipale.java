@@ -1,8 +1,6 @@
 package view;
 
 import fxtimer.FXTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -15,18 +13,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
+import javafx.scene.shape.Box;
 
 public class FenetrePrincipale {
     private Image img1 = new Image("/img/fullLake.png");
     private FXTimer timer = new FXTimer();
 
     @FXML
-    private ImageView imgView1;
+    private BorderPane bigBorderPane;
 
     @FXML
-    private SubScene realChronometer;
+    private ImageView imgView1;
 
     @FXML
     private Canvas painting;
@@ -39,6 +38,9 @@ public class FenetrePrincipale {
         imgView1.setImage(img1);
         //Parent root = new FXTimer();
         //realChronometer = new SubScene(root, 100, 100);
+        Box boxOnTheRight = new Box(100, 100, 100);
+        boxOnTheRight.setManaged(false);
+        bigBorderPane.setRight(boxOnTheRight);
     }
 
 
