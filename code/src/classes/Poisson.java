@@ -1,21 +1,31 @@
 package classes;
 
-public class Poisson {
-    private int taille;
+public abstract class Poisson {
+    private int poids;
     private int valeur;
+    private Deplaceur deplaceurPoisson;
 
     //constructeur
-    public Poisson(int taille, int valeur) {
-        this.taille = taille;
+    public Poisson(int poids, int valeur) {
+        this.poids = poids;
         this.valeur = valeur;
     }
 
-    public int getTaille() {
-        return taille;
+
+    public Deplaceur getDeplaceurPoisson() {
+        return deplaceurPoisson;
     }
 
-    public void setTaille(int taille) {
-        this.taille = taille;
+    public void setDeplaceurPoisson(Deplaceur deplaceurPoisson) {
+        this.deplaceurPoisson = deplaceurPoisson;
+    }
+
+    public int getPoids() {
+        return poids;
+    }
+
+    public void setPoids(int poids) {
+        this.poids = poids;
     }
 
     public int getValeur() {

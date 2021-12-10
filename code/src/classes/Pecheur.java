@@ -1,13 +1,22 @@
 package classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pecheur {
     private String pseudo;
     private int score;
+    private int cooCanneX;
+    private int cooCanneY;
+    private ArrayList<Poisson> listPoissonsAttrapes;
 
     //constructeur
     public Pecheur(String pseudo, int score) {
         this.pseudo = pseudo;
         this.score = score;
+        listPoissonsAttrapes = new ArrayList<Poisson>();
+        cooCanneX = 0;
+        cooCanneY = 0;
     }
 
     public String getPseudo() {

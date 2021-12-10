@@ -3,6 +3,7 @@ package view;
 import fxtimer.FXTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -16,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
+
+import java.io.IOException;
 
 public class FenetrePrincipale {
     private Image img1 = new Image("/img/fullLake.png");
@@ -31,16 +34,20 @@ public class FenetrePrincipale {
     private Canvas painting;
 
     @FXML
-    private TextField chronometer;
+    private SubScene sceneTime;
 
     @FXML
-    public void initialize() { //pour les contrôleurs utiliser initialize() au lieu du constructeur
+    public void initialize() throws IOException { //pour les contrôleurs utiliser initialize() au lieu du constructeur
+        imgView1.setFitHeight(750);
+        imgView1.setFitWidth(750);
         imgView1.setImage(img1);
         //Parent root = new FXTimer();
         //realChronometer = new SubScene(root, 100, 100);
         Box boxOnTheRight = new Box(100, 100, 100);
         boxOnTheRight.setManaged(false);
         bigBorderPane.setRight(boxOnTheRight);
+        boxOnTheRight.setTranslateX(600);
+        boxOnTheRight.setTranslateY(100);
     }
 
 

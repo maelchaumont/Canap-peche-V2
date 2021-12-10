@@ -16,15 +16,20 @@
             fx:id="bigBorderPane">
 
     <left>
-        <TextField fx:id="chronometer">
-
-        </TextField>
+        <AnchorPane fx:id="anchor">
+            <TextField>
+                Test
+            </TextField>
+        </AnchorPane>
     </left>
 
     <top>
         <ImageView fx:id="imgView1">
         </ImageView>
     </top>
+
+    <right>
+    </right>
 
     <bottom>
     <BorderPane>
