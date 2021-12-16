@@ -2,6 +2,9 @@ package view;
 
 import fxtimer.FXTimer;
 import javafx.event.ActionEvent;
+import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,12 +20,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
 public class FenetrePrincipale {
     private Image img1 = new Image("/img/fullLake.png");
     private FXTimer timer = new FXTimer();
+    private Button btnAccueil = new Button("Accueil");
 
     @FXML
     private BorderPane bigBorderPane;
@@ -43,14 +50,29 @@ public class FenetrePrincipale {
         imgView1.setImage(img1);
         //Parent root = new FXTimer();
         //realChronometer = new SubScene(root, 100, 100);
+        /*
         Box boxOnTheRight = new Box(100, 100, 100);
         boxOnTheRight.setManaged(false);
         bigBorderPane.setRight(boxOnTheRight);
         boxOnTheRight.setTranslateX(600);
         boxOnTheRight.setTranslateY(100);
+        */
+        bigBorderPane.setRight(btnAccueil);
+        btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Stage thisStage = (Stage) btnAccueil.getScene().getWindow();
+                try {
+                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetreAccueil.fxml"));
+                    thisStage.setScene(new Scene(racine));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                thisStage.show();
+            }
+        });
     }
-
-
 
     @FXML
     public void clicBtnBleu(ActionEvent actionEvent) {
