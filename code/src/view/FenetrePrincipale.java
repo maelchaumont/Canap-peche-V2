@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import launcher.Launcher;
 import navigate.Navigator;
 
 
@@ -49,8 +50,7 @@ public class FenetrePrincipale {
         imgView1.setFitHeight(750);
         imgView1.setFitWidth(750);
         imgView1.setImage(img1);
-        //Parent root = new FXTimer();
-        //realChronometer = new SubScene(root, 100, 100);
+        Navigator nav = Launcher.nav;
         /*
         Box boxOnTheRight = new Box(100, 100, 100);
         boxOnTheRight.setManaged(false);
@@ -62,7 +62,6 @@ public class FenetrePrincipale {
         btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
-                Navigator nav = new Navigator();
                 nav.changeScene("vueAccueil");
             }
         });

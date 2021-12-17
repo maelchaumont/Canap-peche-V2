@@ -1,19 +1,12 @@
 package launcher;
 
-import classes.DeplaceurLent;
-import classes.DeplaceurRapide;
-import fxtimer.FXTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import navigate.Navigator;
 
 import java.awt.*;
 import java.io.FileInputStream;
@@ -21,32 +14,25 @@ import java.io.IOException;
 
 
 public class Launcher extends Application {
-    private Stage myStage;
 
-    @FXML
-    private AnchorPane anchor;
+    public static Navigator nav;
 
 
     @Override
-    public void start(Stage myStage) {
-        this.myStage = myStage;
+    public void start(Stage myStage) throws IOException {
 
-        try {
-            Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
-            myStage.setScene(new Scene(racine));
-            myStage.setTitle("Jeu canap' pêche");
+        nav = new Navigator(myStage);
+        nav.changeScene("vuePrincipale");
 
+        //Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
+        //myStage.setScene(new Scene(racine));
+        //myStage.setTitle("Jeu canap' pêche");
+
+            /*
             DeplaceurRapide dr = new DeplaceurRapide();
             anchor = new AnchorPane();
             dr.deplacer(anchor, 100, 50);
-
-            myStage.show();
-        } catch (IOException e) {
-            System.err.println("erreur dans start :" + e.getMessage());
-        }
+             */
         //FXTimer timer = new FXTimer();
     }
-
-
-
 }

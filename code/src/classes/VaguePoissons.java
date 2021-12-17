@@ -13,11 +13,10 @@ public class VaguePoissons {
         this.nbPoissons = nbPoissons;
     }
 
-    public List<Poisson> getListPoissons() {
+    public ArrayList<Poisson> getListPoissons() {
         return listPoissons;
     }
-
-    public void setListPoissons(ArrayList<Poisson> listPoissons) {
+     public void setListPoissons(ArrayList<Poisson> listPoissons) {
         this.listPoissons = listPoissons;
     }
 

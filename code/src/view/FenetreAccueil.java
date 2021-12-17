@@ -3,18 +3,21 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
 
 public class FenetreAccueil {
     private Image imgBackAccueil = new Image("/img/gifBackAccueil");
-
-    @FXML
-    private ImageView backgroundAccueil;
+    private ImageView backgroundAccueil = new ImageView();
 
 
     @FXML
-    public void initialize() throws IOException {
+    private BorderPane borderPaneAccueil;
+
+
+    @FXML
+    public void initialize() {
+        borderPaneAccueil.setCenter(backgroundAccueil);
         backgroundAccueil.setFitHeight(750);
         backgroundAccueil.setFitWidth(750);
         backgroundAccueil.setImage(imgBackAccueil);
