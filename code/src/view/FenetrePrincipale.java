@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import navigate.Navigator;
 
 
 import java.io.IOException;
@@ -58,18 +59,11 @@ public class FenetrePrincipale {
         boxOnTheRight.setTranslateY(100);
         */
         bigBorderPane.setRight(btnAccueil);
-        btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+        btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
-                Stage thisStage = (Stage) btnAccueil.getScene().getWindow();
-                try {
-                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetreAccueil.fxml"));
-                    thisStage.setScene(new Scene(racine));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                thisStage.show();
+                Navigator nav = new Navigator();
+                nav.changeScene("vueAccueil");
             }
         });
     }

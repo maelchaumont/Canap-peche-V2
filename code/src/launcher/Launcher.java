@@ -21,13 +21,15 @@ import java.io.IOException;
 
 
 public class Launcher extends Application {
-    private static Stage myStage;
+    private Stage myStage;
 
     @FXML
     private AnchorPane anchor;
 
+
     @Override
     public void start(Stage myStage) {
+        this.myStage = myStage;
 
         try {
             Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
@@ -44,4 +46,7 @@ public class Launcher extends Application {
         }
         //FXTimer timer = new FXTimer();
     }
+
+
+
 }
