@@ -4,9 +4,9 @@ import java.util.Map;
 
 public class ChargeurHS {
 
-    /*
-    public Map<String, Integer> chargeHS() {
 
+    public Map<String, Integer> chargeHS() {
+        return null;
     }
-    */
+
 }

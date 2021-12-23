@@ -1,27 +1,21 @@
 package view;
 
-import fxtimer.FXTimer;
 import javafx.event.ActionEvent;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import launcher.Launcher;
 import navigate.Navigator;
 
@@ -30,7 +24,6 @@ import java.io.IOException;
 
 public class FenetrePrincipale {
     private Image img1 = new Image("/img/fullLake.png");
-    private FXTimer timer = new FXTimer();
     private Button btnAccueil = new Button("Accueil");
 
     @FXML
@@ -47,9 +40,12 @@ public class FenetrePrincipale {
 
     @FXML
     public void initialize() throws IOException { //pour les contrôleurs utiliser initialize() au lieu du constructeur
-        imgView1.setFitHeight(750);
-        imgView1.setFitWidth(750);
+        imgView1.setFitHeight(500);
+        imgView1.setFitWidth(500);
         imgView1.setImage(img1);
+
+        bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+
         Navigator nav = Launcher.nav;
         /*
         Box boxOnTheRight = new Box(100, 100, 100);

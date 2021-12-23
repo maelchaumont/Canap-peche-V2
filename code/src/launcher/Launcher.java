@@ -22,7 +22,7 @@ public class Launcher extends Application {
     public void start(Stage myStage) throws IOException {
 
         nav = new Navigator(myStage);
-        nav.changeScene("vuePrincipale");
+        nav.changeScene("vueAccueil");
 
         //Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
         //myStage.setScene(new Scene(racine));

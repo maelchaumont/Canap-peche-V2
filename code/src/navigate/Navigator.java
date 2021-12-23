@@ -2,6 +2,7 @@ package navigate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class Navigator {
 
     public void changeScene(String name) {
         this.getMyStage().setTitle("Jeu canap' pêche");
+        this.getMyStage().getIcons().add(new Image("/img/fishIcon.png"));
 
         switch(name) {
             case "vueAccueil":
