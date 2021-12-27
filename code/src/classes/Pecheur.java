@@ -6,8 +6,6 @@ import java.util.List;
 public class Pecheur {
     private String pseudo;
     private int score;
-    private int cooCanneX;
-    private int cooCanneY;
     private ArrayList<Poisson> listPoissonsAttrapes;
 
     //constructeur
@@ -15,8 +13,6 @@ public class Pecheur {
         this.pseudo = pseudo;
         this.score = score;
         listPoissonsAttrapes = new ArrayList<Poisson>();
-        cooCanneX = 0;
-        cooCanneY = 0;
     }
 
     public String getPseudo() {
