@@ -1,8 +1,10 @@
 package classes;
 
 import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
-public abstract class Poisson {
+public abstract class Poisson extends Circle {
     private int poids;
     private int valeur;
     private Deplaceur deplaceurPoisson;
@@ -16,14 +18,19 @@ public abstract class Poisson {
         this.poids = poids;
         this.valeur = valeur;
         isCatched = false;
+
+        //cercle
+        super.setRadius(20);
+        super.setFill(new ImagePattern(new Image("/img/fish.png")));
+
         //temporaire
         cooXPoisson = 0;
         cooYPoisson = 0;
     }
 
 
-    //getters et setters
 
+    //getters et setters
     public Deplaceur getDeplaceurPoisson() {
         return deplaceurPoisson;
     }
@@ -69,6 +76,7 @@ public abstract class Poisson {
     }
 
     public void setCooXPoisson(int cooXPoisson) {
+        this.setTranslateX(cooXPoisson);
         this.cooXPoisson = cooXPoisson;
     }
 
@@ -77,6 +85,7 @@ public abstract class Poisson {
     }
 
     public void setCooYPoisson(int cooYPoisson) {
+        this.setTranslateY(cooYPoisson);
         this.cooYPoisson = cooYPoisson;
     }
 }

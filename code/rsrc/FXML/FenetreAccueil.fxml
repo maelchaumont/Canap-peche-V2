@@ -11,4 +11,5 @@
             fx:controller="view.FenetreAccueil"
             fx:id="borderPaneAccueil">
 
+
 </BorderPane>

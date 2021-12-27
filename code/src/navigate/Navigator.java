@@ -34,7 +34,7 @@ public class Navigator {
         switch(name) {
             case "vueAccueil":
                 try {
-                    Parent racine = FXMLLoader.load(Navigator.class.getResource("/FXML/FenetreAccueil.fxml"));
+                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetreAccueil.fxml"));
                     this.getMyStage().setScene(new Scene(racine));
                     this.getMyStage().show();
                 } catch (IOException e) {
@@ -43,7 +43,7 @@ public class Navigator {
                 break;
             case "vuePrincipale":
                 try {
-                    Parent racine = FXMLLoader.load(Navigator.class.getResource("/FXML/FenetrePrincipale.fxml"));
+                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
                     this.getMyStage().setScene(new Scene(racine));
                     this.getMyStage().show();
                 } catch (IOException e) {

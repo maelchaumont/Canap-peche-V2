@@ -6,9 +6,9 @@ import javafx.scene.layout.AnchorPane;
 public abstract class Deplaceur {
     public int multiplier;
 
-    public void deplacer(Node n, int x, int y) {
-        n.setTranslateX(x * multiplier);
-        n.setTranslateY(y * multiplier);
+    public void deplacer(Poisson p, int x, int y) {
+        p.setTranslateX(x * multiplier);
+        p.setTranslateY(y * multiplier);
     }
 
     public int getMultiplier() {

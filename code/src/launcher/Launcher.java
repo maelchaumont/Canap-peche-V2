@@ -1,6 +1,7 @@
 package launcher;
 
 
+import highscores.SauvegardeurHS;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -27,12 +28,7 @@ public class Launcher extends Application {
         //Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
         //myStage.setScene(new Scene(racine));
         //myStage.setTitle("Jeu canap' pêche");
-
-            /*
-            DeplaceurRapide dr = new DeplaceurRapide();
-            anchor = new AnchorPane();
-            dr.deplacer(anchor, 100, 50);
-             */
-        //FXTimer timer = new FXTimer();
+        //SauvegardeurHS s = new SauvegardeurHS();
+        //s.sauvegardeHS("Machin", 46);
     }
 }

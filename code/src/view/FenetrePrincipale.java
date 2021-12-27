@@ -1,7 +1,12 @@
 package view;
 
+import classes.DeplaceurLent;
+import classes.Poisson;
+import classes.PoissonBombe;
+import classes.PoissonClassique;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +21,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import launcher.Launcher;
 import navigate.Navigator;
 
@@ -33,10 +39,7 @@ public class FenetrePrincipale {
     private ImageView imgView1;
 
     @FXML
-    private Canvas painting;
-
-    @FXML
-    private SubScene sceneTime;
+    private TextField textFieldTest;
 
     @FXML
     public void initialize() throws IOException { //pour les contrôleurs utiliser initialize() au lieu du constructeur
@@ -45,53 +48,42 @@ public class FenetrePrincipale {
         imgView1.setImage(img1);
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        Poisson poissontest = new PoissonClassique(49, 57);
+        bigBorderPane.getChildren().add(poissontest);
+        poissontest.setTranslateX(100);
+        poissontest.setTranslateY(100);
 
+
+        //STATIC A CHANGER
         Navigator nav = Launcher.nav;
-        /*
-        Box boxOnTheRight = new Box(100, 100, 100);
-        boxOnTheRight.setManaged(false);
-        bigBorderPane.setRight(boxOnTheRight);
-        boxOnTheRight.setTranslateX(600);
-        boxOnTheRight.setTranslateY(100);
-        */
+
+        //click de l'utilisateur n'importe où
+        bigBorderPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
+            double x = event.getSceneX();
+            double y = event.getSceneY();
+            textFieldTest.setText("Rentre dans le handler. coo :"+ x + "," + y);
+            textFieldTest.prefColumnCountProperty().bind(textFieldTest.textProperty().length());;
+
+            //test de l'emplacement du click
+            Circle circletest = new Circle();
+            bigBorderPane.getChildren().add(circletest);
+            circletest.setRadius(15);
+            circletest.setFill(Color.WHITE);
+            circletest.setCenterX(x);
+            circletest.setCenterY(y);
+
+            //Déplacement du poisson à des coo fixes(instantanément...)
+            poissontest.setDeplaceurPoisson(new DeplaceurLent());
+            poissontest.getDeplaceurPoisson().deplacer(poissontest, 200, 200);
+        });
+
         bigBorderPane.setRight(btnAccueil);
+        //click de l'utilisateur sur le bouton d'accueil
         btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
                 nav.changeScene("vueAccueil");
             }
         });
-    }
-
-    @FXML
-    public void clicBtnBleu(ActionEvent actionEvent) {
-        GraphicsContext gc = painting.getGraphicsContext2D();
-
-        gc.setFill(Color.BLUE);
-        gc.fillRect(0,0,100,100);
-    }
-
-    @FXML
-    public void clicBtnRouge(ActionEvent actionEvent) {
-        GraphicsContext gc = painting.getGraphicsContext2D();
-
-        gc.setFill(Color.RED);
-        gc.fillRect(0,0,100,100);
-    }
-
-    @FXML
-    public void clicBtnVert(ActionEvent actionEvent) {
-        GraphicsContext gc = painting.getGraphicsContext2D();
-
-        gc.setFill(Color.GREEN);
-        gc.fillRect(0,0,100,100);
-    }
-
-    @FXML
-    public void clicBtnJaune(ActionEvent actionEvent) {
-        GraphicsContext gc = painting.getGraphicsContext2D();
-
-        gc.setFill(Color.YELLOW);
-        gc.fillRect(0,0,100,100);
     }
 }

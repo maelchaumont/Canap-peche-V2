@@ -23,6 +23,7 @@ public class FenetreAccueil {
     private Button btnJouer = new Button("Jouer");
     private Button btnHS = new Button("Highscores");
     private VBox vboxButtons = new VBox(20);
+    private StackPane stackPaneCenter = new StackPane();
 
 
 
@@ -33,7 +34,9 @@ public class FenetreAccueil {
 
     @FXML
     public void initialize() {
-        borderPaneAccueil.setCenter(backgroundAccueil);
+        stackPaneCenter.getChildren().addAll(vboxButtons, backgroundAccueil);
+
+        borderPaneAccueil.setCenter(stackPaneCenter);
         backgroundAccueil.setFitHeight(500);
         backgroundAccueil.setFitWidth(500);
         backgroundAccueil.setImage(imgBackAccueil);
