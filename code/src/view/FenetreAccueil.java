@@ -2,19 +2,22 @@ package view;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import launcher.Launcher;
-import navigate.Navigator;
+import manager.GameManager;
 
-import javax.swing.text.html.HTML;
+import java.io.IOException;
 
 
 public class FenetreAccueil {
@@ -51,11 +54,17 @@ public class FenetreAccueil {
         vboxButtons.getChildren().add(btnHS);
         borderPaneAccueil.getChildren().add(vboxButtons);
 
-        Navigator nav = Launcher.nav;
         btnJouer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
-                nav.changeScene("vuePrincipale");
+                try {
+                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
+                    Stage theStage = (Stage) btnJouer.getScene().getWindow();
+                    theStage.setScene(new Scene(racine));
+                    theStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

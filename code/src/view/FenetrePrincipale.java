@@ -1,18 +1,14 @@
 package view;
 
-import classes.DeplaceurLent;
-import classes.Poisson;
-import classes.PoissonBombe;
-import classes.PoissonClassique;
-import javafx.event.ActionEvent;
+import classes.*;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.SubScene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,8 +18,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import launcher.Launcher;
-import navigate.Navigator;
+import manager.GameManager;
 
 
 import java.io.IOException;
@@ -48,14 +45,17 @@ public class FenetrePrincipale {
         imgView1.setImage(img1);
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        Poisson poissontest = new PoissonClassique(49, 57);
+        VaguePoissons vP = new VaguePoissons(7);
+        for (Poisson fish:
+             vP.getListPoissons()) {
+            bigBorderPane.getChildren().add(fish);
+        }
+        /*
+        Poisson poissontest = new PoissonBombe(49, 57);
         bigBorderPane.getChildren().add(poissontest);
         poissontest.setTranslateX(100);
         poissontest.setTranslateY(100);
-
-
-        //STATIC A CHANGER
-        Navigator nav = Launcher.nav;
+        */
 
         //click de l'utilisateur n'importe où
         bigBorderPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
@@ -73,8 +73,8 @@ public class FenetrePrincipale {
             circletest.setCenterY(y);
 
             //Déplacement du poisson à des coo fixes(instantanément...)
-            poissontest.setDeplaceurPoisson(new DeplaceurLent());
-            poissontest.getDeplaceurPoisson().deplacer(poissontest, 200, 200);
+            //poissontest.setDeplaceurPoisson(new DeplaceurLent());
+            //poissontest.getDeplaceurPoisson().deplacer(poissontest, 200, 200);
         });
 
         bigBorderPane.setRight(btnAccueil);
@@ -82,7 +82,18 @@ public class FenetrePrincipale {
         btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
-                nav.changeScene("vueAccueil");
+                try {
+                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetreAccueil.fxml"));
+                    Stage theStage = (Stage) btnAccueil.getScene().getWindow();
+                    theStage.setScene(new Scene(racine));
+                    theStage.show();
+
+                    //STATIC A EVITER
+                    //GameManager.myStage.setScene(new Scene(racine));
+                    //GameManager.myStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

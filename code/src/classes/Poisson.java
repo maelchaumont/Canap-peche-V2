@@ -14,20 +14,21 @@ public abstract class Poisson extends Circle {
     private int cooYPoisson;
 
     //constructeur
-    public Poisson(int poids, int valeur) {
+    public Poisson(Image image, int poids, int valeur) {
         this.poids = poids;
         this.valeur = valeur;
         isCatched = false;
 
         //cercle
-        super.setRadius(20);
-        super.setFill(new ImagePattern(new Image("/img/fish.png")));
+        super.setRadius(25);
+        super.setFill(new ImagePattern(image));
 
         //temporaire
         cooXPoisson = 0;
         cooYPoisson = 0;
     }
 
+    public void update() {}
 
 
     //getters et setters
