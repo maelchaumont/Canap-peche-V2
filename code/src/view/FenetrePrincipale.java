@@ -40,8 +40,8 @@ public class FenetrePrincipale {
 
     @FXML
     public void initialize() throws IOException { //pour les contrôleurs utiliser initialize() au lieu du constructeur
-        imgView1.setFitHeight(500);
-        imgView1.setFitWidth(500);
+        imgView1.setFitHeight(800);
+        imgView1.setFitWidth(800);
         imgView1.setImage(img1);
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));

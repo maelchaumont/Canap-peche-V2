@@ -1,6 +1,7 @@
 package manager;
 
 import classes.Boucleur;
+import classes.VaguePoissons;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,9 +31,8 @@ public class GameManager {
 
     public void startNewGame() {
         Boucleur b = new Boucleur();
-        while(true) {
-            //b.tourDeBoucle();
-        }
+        Thread t = new Thread(b);
+        t.start();
     }
 
 

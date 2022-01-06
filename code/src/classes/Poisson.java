@@ -28,8 +28,6 @@ public abstract class Poisson extends Circle {
         cooYPoisson = 0;
     }
 
-    public void update() {}
-
 
     //getters et setters
     public Deplaceur getDeplaceurPoisson() {

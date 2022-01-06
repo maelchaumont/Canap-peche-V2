@@ -15,8 +15,4 @@ public class PoissonClassique extends Poisson{
             super.setDeplaceurPoisson(new DeplaceurRapide());
     }
 
-    @Override
-    public void update() {
-        etatPoisson = boucleur.isEtatBoucleur();
-    }
 }

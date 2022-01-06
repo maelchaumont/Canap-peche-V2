@@ -6,12 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class VaguePoissons {
+public class VaguePoissons extends VaguePoissonAbstrait{
     private ArrayList<Poisson> listPoissons;
     private int nbPoissons;
+    private String etatVague;
 
 
     public VaguePoissons(int nbPoissons) {
+        super.setListObservateurs(new ArrayList<>());
+        super.attacher(new AnimVaguePoisson());
+        etatVague = "test";
+
         this.nbPoissons = nbPoissons;
         listPoissons = new ArrayList<>();
 
@@ -49,6 +54,8 @@ public class VaguePoissons {
     }
 
 
+
+
     //GETTERS ET SETTERS
     public ArrayList<Poisson> getListPoissons() {
         return listPoissons;
@@ -63,5 +70,13 @@ public class VaguePoissons {
 
     public void setNbPoissons(int nbPoissons) {
         this.nbPoissons = nbPoissons;
+    }
+
+    public String getEtatVague() {
+        return etatVague;
+    }
+
+    public void setEtatVague(String etatVague) {
+        this.etatVague = etatVague;
     }
 }

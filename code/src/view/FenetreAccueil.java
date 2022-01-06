@@ -40,8 +40,8 @@ public class FenetreAccueil {
         stackPaneCenter.getChildren().addAll(vboxButtons, backgroundAccueil);
 
         borderPaneAccueil.setCenter(stackPaneCenter);
-        backgroundAccueil.setFitHeight(500);
-        backgroundAccueil.setFitWidth(500);
+        backgroundAccueil.setFitHeight(800);
+        backgroundAccueil.setFitWidth(800);
         backgroundAccueil.setImage(imgBackAccueil);
         borderPaneAccueil.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
