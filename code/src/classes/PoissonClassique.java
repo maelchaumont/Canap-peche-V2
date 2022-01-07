@@ -3,7 +3,7 @@ package classes;
 import javafx.scene.image.Image;
 
 public class PoissonClassique extends Poisson{
-    private Boucleur boucleur = new Boucleur();
+    private BoucleurRapide boucleur = new BoucleurRapide();
     private boolean etatPoisson = false;
 
     public PoissonClassique(int poids, int valeur) {

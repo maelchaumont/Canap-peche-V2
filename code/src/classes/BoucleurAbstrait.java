@@ -2,7 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 
-public abstract class VaguePoissonAbstrait {
+public abstract class BoucleurAbstrait implements Runnable{
     private ArrayList<Observateur> listObservateurs;
 
     public void attacher(Observateur o) {
@@ -15,12 +15,11 @@ public abstract class VaguePoissonAbstrait {
 
     public void notifier() {
         for (Observateur o:
-             getListObservateurs()) {
+                getListObservateurs()) {
             o.update();
         }
         //dire qu'on récupère le beep
     }
-
 
     //GETTERS & SETTERS
     public ArrayList<Observateur> getListObservateurs() {

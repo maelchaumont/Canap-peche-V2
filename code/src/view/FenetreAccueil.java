@@ -1,5 +1,6 @@
 package view;
 
+import com.sun.javafx.fxml.FXMLLoaderHelper;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,12 +28,16 @@ public class FenetreAccueil {
     private Button btnHS = new Button("Highscores");
     private VBox vboxButtons = new VBox(20);
     private StackPane stackPaneCenter = new StackPane();
-
+    private GameManager gM;
 
 
 
     @FXML
     private BorderPane borderPaneAccueil;
+
+    public FenetreAccueil(GameManager gM) {
+        this.gM = gM;
+    }
 
 
     @FXML
@@ -58,9 +63,17 @@ public class FenetreAccueil {
             @Override
             public void handle(MouseEvent event) {
                 try {
+                    /*
                     Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
                     Stage theStage = (Stage) btnJouer.getScene().getWindow();
                     theStage.setScene(new Scene(racine));
+                    theStage.show();
+                     */
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
+                    loader.setController(new FenetrePrincipale(new GameManager(new Stage())));
+                    Parent root = loader.load();
+                    Stage theStage = (Stage) btnJouer.getScene().getWindow();
+                    theStage.setScene(new Scene(root));
                     theStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();

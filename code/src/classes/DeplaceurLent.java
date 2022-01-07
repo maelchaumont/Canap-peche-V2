@@ -9,10 +9,10 @@ public class DeplaceurLent extends Deplaceur{
         Random r = new Random();
         int firstMovementIsUp = r.nextInt(2);
 
-        p.setTranslateX(p.getTranslateX()+5);
+        p.setCooXPoisson(p.getCooXPoisson()+5);
         if(firstMovementIsUp == 0)
-            p.setTranslateY(p.getTranslateY()+5);
+            p.setCooYPoisson(p.getCooYPoisson()+5);
         else
-            p.setTranslateY(p.getTranslateY()-5);
+            p.setCooYPoisson(p.getCooYPoisson()-5);
     }
 }

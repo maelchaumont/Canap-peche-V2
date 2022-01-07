@@ -1,21 +1,14 @@
 package classes;
 
-import javafx.scene.Node;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class VaguePoissons extends VaguePoissonAbstrait{
+public class VaguePoissons {
     private ArrayList<Poisson> listPoissons;
     private int nbPoissons;
-    private String etatVague;
 
 
     public VaguePoissons(int nbPoissons) {
-        super.setListObservateurs(new ArrayList<>());
-        super.attacher(new AnimVaguePoisson());
-        etatVague = "test";
 
         this.nbPoissons = nbPoissons;
         listPoissons = new ArrayList<>();
@@ -46,10 +39,10 @@ public class VaguePoissons extends VaguePoissonAbstrait{
         for (Poisson p:
              getListPoissons()) {
             Random rCooY = new Random();
-            int lowY = 100;
-            int highY = 350;
-            p.setTranslateX(15);
-            p.setTranslateY(rCooY.nextInt(highY-lowY) + lowY);
+            int lowY = 150;
+            int highY = 550;
+            p.setCooXPoisson(15);
+            p.setCooYPoisson(rCooY.nextInt(highY-lowY) + lowY);
         }
     }
 
@@ -72,11 +65,4 @@ public class VaguePoissons extends VaguePoissonAbstrait{
         this.nbPoissons = nbPoissons;
     }
 
-    public String getEtatVague() {
-        return etatVague;
-    }
-
-    public void setEtatVague(String etatVague) {
-        this.etatVague = etatVague;
-    }
 }

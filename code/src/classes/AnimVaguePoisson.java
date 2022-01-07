@@ -6,7 +6,8 @@ public class AnimVaguePoisson extends Observateur{
 
     @Override
     public void update() {
-        etatVaguePoisson = maVaguePoisson.getEtatVague();
+        maVaguePoisson = new VaguePoissons(7);
+        //etatVaguePoisson = maVaguePoisson.getEtatVague();
 
         //test
         for (Poisson p:

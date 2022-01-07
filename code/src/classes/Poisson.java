@@ -1,32 +1,41 @@
 package classes;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-public abstract class Poisson extends Circle {
+public abstract class Poisson{
     private int poids;
     private int valeur;
     private Deplaceur deplaceurPoisson;
     private Image spritePoisson;
     private boolean isCatched;
-    private int cooXPoisson;
-    private int cooYPoisson;
 
     //constructeur
-    public Poisson(Image image, int poids, int valeur) {
+    public Poisson(Image spritePoisson, int poids, int valeur) {
         this.poids = poids;
         this.valeur = valeur;
+        this.spritePoisson = spritePoisson;
         isCatched = false;
-
-        //cercle
-        super.setRadius(25);
-        super.setFill(new ImagePattern(image));
-
-        //temporaire
-        cooXPoisson = 0;
-        cooYPoisson = 0;
     }
+
+
+    //binding
+    private IntegerProperty cooXPoisson = new SimpleIntegerProperty();
+        public Integer getCooXPoisson(){return cooXPoisson.get();}
+        public void setCooXPoisson(int nvCoo){cooXPoisson.set(nvCoo);}
+        public ReadOnlyIntegerProperty cooXPoissonProperty(){return cooXPoisson;}
+
+    private IntegerProperty cooYPoisson = new SimpleIntegerProperty();
+        public Integer getCooYPoisson(){return cooYPoisson.get();}
+        public void setCooYPoisson(int nvCoo){cooYPoisson.set(nvCoo);}
+        public ReadOnlyIntegerProperty cooYPoissonProperty(){return cooYPoisson;}
+
+
 
 
     //getters et setters
@@ -68,23 +77,5 @@ public abstract class Poisson extends Circle {
 
     public void setCatched(boolean catched) {
         isCatched = catched;
-    }
-
-    public int getCooXPoisson() {
-        return cooXPoisson;
-    }
-
-    public void setCooXPoisson(int cooXPoisson) {
-        this.setTranslateX(cooXPoisson);
-        this.cooXPoisson = cooXPoisson;
-    }
-
-    public int getCooYPoisson() {
-        return cooYPoisson;
-    }
-
-    public void setCooYPoisson(int cooYPoisson) {
-        this.setTranslateY(cooYPoisson);
-        this.cooYPoisson = cooYPoisson;
     }
 }

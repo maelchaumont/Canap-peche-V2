@@ -28,6 +28,7 @@ import java.io.IOException;
 public class FenetrePrincipale {
     private Image img1 = new Image("/img/fullLake.png");
     private Button btnAccueil = new Button("Accueil");
+    private GameManager gM;
 
     @FXML
     private BorderPane bigBorderPane;
@@ -38,31 +39,27 @@ public class FenetrePrincipale {
     @FXML
     private TextField textFieldTest;
 
+    public FenetrePrincipale(GameManager gM) {
+        this.gM = gM;
+    }
+
     @FXML
     public void initialize() throws IOException { //pour les contrôleurs utiliser initialize() au lieu du constructeur
+        //début d'une nouvelle partie
+        getgM().startNewGame();
+
         imgView1.setFitHeight(800);
         imgView1.setFitWidth(800);
         imgView1.setImage(img1);
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        VaguePoissons vP = new VaguePoissons(7);
-        for (Poisson fish:
-             vP.getListPoissons()) {
-            bigBorderPane.getChildren().add(fish);
-        }
-        /*
-        Poisson poissontest = new PoissonBombe(49, 57);
-        bigBorderPane.getChildren().add(poissontest);
-        poissontest.setTranslateX(100);
-        poissontest.setTranslateY(100);
-        */
 
         //click de l'utilisateur n'importe où
         bigBorderPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
             double x = event.getSceneX();
             double y = event.getSceneY();
             textFieldTest.setText("Rentre dans le handler. coo :"+ x + "," + y);
-            textFieldTest.prefColumnCountProperty().bind(textFieldTest.textProperty().length());;
+            textFieldTest.prefColumnCountProperty().bind(textFieldTest.textProperty().length());
 
             //test de l'emplacement du click
             Circle circletest = new Circle();
@@ -83,18 +80,26 @@ public class FenetrePrincipale {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    Parent racine = FXMLLoader.load(getClass().getResource("/FXML/FenetreAccueil.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreAccueil.fxml"));
+                    loader.setController(new FenetreAccueil(gM));
+                    Parent root = loader.load();
                     Stage theStage = (Stage) btnAccueil.getScene().getWindow();
-                    theStage.setScene(new Scene(racine));
+                    theStage.setScene(new Scene(root));
                     theStage.show();
-
-                    //STATIC A EVITER
-                    //GameManager.myStage.setScene(new Scene(racine));
-                    //GameManager.myStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+
+    //GETTERS & SETTERS
+    public GameManager getgM() {
+        return gM;
+    }
+
+    public void setgM(GameManager gM) {
+        this.gM = gM;
     }
 }
