@@ -1,6 +1,7 @@
 package view;
 
 import classes.*;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -53,6 +54,12 @@ public class FenetrePrincipale {
         imgView1.setImage(img1);
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        gM.getvP().listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
+            @Override
+            public void onChanged(Change<? extends Poisson> c) {
+                System.out.println("a changé(dans le contrôleur)");
+            }
+        });
 
         //click de l'utilisateur n'importe où
         bigBorderPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {

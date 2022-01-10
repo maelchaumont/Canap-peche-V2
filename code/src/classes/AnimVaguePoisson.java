@@ -4,11 +4,12 @@ public class AnimVaguePoisson extends Observateur{
     private String etatVaguePoisson;
     private VaguePoissons maVaguePoisson;
 
+    public AnimVaguePoisson(VaguePoissons maVaguePoisson) {
+        this.maVaguePoisson = maVaguePoisson;
+    }
+
     @Override
     public void update() {
-        maVaguePoisson = new VaguePoissons(7);
-        //etatVaguePoisson = maVaguePoisson.getEtatVague();
-
         //test
         for (Poisson p:
              getMaVaguePoisson().getListPoissons()) {

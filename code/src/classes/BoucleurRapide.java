@@ -1,13 +1,15 @@
 package classes;
 
+import manager.GameManager;
+
 import java.util.ArrayList;
 
 public class BoucleurRapide extends BoucleurAbstrait{
     private String etatVague;
 
-    public BoucleurRapide(){
+    public BoucleurRapide(VaguePoissons vP){
         super.setListObservateurs(new ArrayList<>());
-        super.attacher(new AnimVaguePoisson());
+        super.attacher(new AnimVaguePoisson(vP));
         etatVague = "test";
     }
 

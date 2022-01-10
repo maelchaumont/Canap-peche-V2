@@ -1,14 +1,13 @@
 package classes;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
-public abstract class Poisson{
+public abstract class Poisson implements Observable {
     private int poids;
     private int valeur;
     private Deplaceur deplaceurPoisson;
@@ -77,5 +76,17 @@ public abstract class Poisson{
 
     public void setCatched(boolean catched) {
         isCatched = catched;
+    }
+
+
+    //A ENLEVER
+    @Override
+    public void addListener(InvalidationListener listener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener) {
+
     }
 }

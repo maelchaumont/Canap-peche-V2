@@ -1,7 +1,7 @@
 package launcher;
 
 
-import highscores.ChargeurHS;
+import classes.highscores.ChargeurHS;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import manager.GameManager;

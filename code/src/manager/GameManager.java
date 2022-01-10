@@ -1,23 +1,17 @@
 package manager;
 
-import classes.BoucleurLent;
-import classes.BoucleurRapide;
-import classes.Poisson;
-import classes.VaguePoissons;
-import highscores.ChargeurHS;
-import highscores.Highscores;
-import highscores.SauvegardeurHS;
+import classes.*;
+import classes.highscores.ChargeurHS;
+import classes.highscores.Highscores;
+import classes.highscores.SauvegardeurHS;
 import javafx.collections.ListChangeListener;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.FenetreAccueil;
-import view.FenetrePrincipale;
 
 import java.io.IOException;
 
@@ -31,7 +25,7 @@ public class GameManager {
         this.vP = new VaguePoissons(7);
         this.hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
 
-        vP.getListPoissons().addListener(new ListChangeListener<Poisson>() {
+        vP.listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
             @Override
             public void onChanged(Change<? extends Poisson> c) {
                 System.out.println("(temporaire) : listPoisson changée");
@@ -67,12 +61,19 @@ public class GameManager {
         }
 
 
-        BoucleurRapide boucleurRapide = new BoucleurRapide();
+        BoucleurRapide boucleurRapide = new BoucleurRapide(this.getvP());
         BoucleurLent boucleurLent = new BoucleurLent();
         Thread t1 = new Thread(boucleurRapide);
         Thread t2 = new Thread(boucleurLent);
         t1.start();
         t2.start();
+
+
+
+        vP.getListPoissons().add(new PoissonBombe(5,5));
+        vP.getListPoissons().get(3).setCooXPoisson(200);
+        vP.getListPoissons().get(3).setPoids(45);
+        vP.getListPoissons().get(3).setCooXPoisson(250);
     }
 
 

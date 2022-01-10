@@ -1,4 +1,4 @@
-package highscores;
+package classes.highscores;
 
 import java.util.Map;
 

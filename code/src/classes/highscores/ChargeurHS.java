@@ -1,8 +1,7 @@
-package highscores;
+package classes.highscores;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +31,8 @@ public class ChargeurHS {
         }
 
         for (final Map.Entry<String, Integer> entry : mapTemp.entrySet()) {
+            if(mapToReturn.size() == 5) break;
+
             String key =  entry.getKey();
             int value =  entry.getValue();
             boolean alreadyExists = false;
