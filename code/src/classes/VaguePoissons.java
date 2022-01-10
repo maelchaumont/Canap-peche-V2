@@ -1,23 +1,25 @@
 package classes;
 
-import java.util.ArrayList;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.ReadOnlyListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.Random;
 
 public class VaguePoissons {
-    private ArrayList<Poisson> listPoissons;
     private int nbPoissons;
 
 
+    //CONSTRUCTEUR
     public VaguePoissons(int nbPoissons) {
-
         this.nbPoissons = nbPoissons;
-        listPoissons = new ArrayList<>();
 
         Random r = new Random();
         int low = 5;
         int high = 25;
         //5 poissons ou +
-        if(nbPoissons > 5) {
+        if(getNbPoissons() > 5) {
             for (int i = 0; i < nbPoissons-2; i++) {
                 int poids = r.nextInt(high-low) + low;
                 listPoissons.add(new PoissonClassique(poids,10));
@@ -47,22 +49,17 @@ public class VaguePoissons {
     }
 
 
-
-
     //GETTERS ET SETTERS
-    public ArrayList<Poisson> getListPoissons() {
-        return listPoissons;
-    }
-     public void setListPoissons(ArrayList<Poisson> listPoissons) {
-        this.listPoissons = listPoissons;
-    }
+    ObservableList<Poisson> observableListPoissons = FXCollections.observableArrayList();
+    ListProperty<Poisson> listPoissons = new SimpleListProperty<Poisson>(observableListPoissons);
+    public ObservableList<Poisson> getListPoissons(){return listPoissons.get();}
+    public void setListPoissons(SimpleListProperty<Poisson> nvListe){listPoissons.set(nvListe);}
+    public ReadOnlyListProperty<Poisson> listPoissonsProperty(){return listPoissons;}
 
     public int getNbPoissons() {
         return nbPoissons;
     }
-
     public void setNbPoissons(int nbPoissons) {
         this.nbPoissons = nbPoissons;
     }
-
 }

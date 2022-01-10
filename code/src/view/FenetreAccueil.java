@@ -59,6 +59,8 @@ public class FenetreAccueil {
         vboxButtons.getChildren().add(btnHS);
         borderPaneAccueil.getChildren().add(vboxButtons);
 
+
+        //HANDLERS BUTTONS
         btnJouer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
@@ -69,10 +71,26 @@ public class FenetreAccueil {
                     theStage.setScene(new Scene(racine));
                     theStage.show();
                      */
+                    Stage theStage = gM.getMyStage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
-                    loader.setController(new FenetrePrincipale(new GameManager(new Stage())));
+                    loader.setController(new FenetrePrincipale(gM));
                     Parent root = loader.load();
-                    Stage theStage = (Stage) btnJouer.getScene().getWindow();
+                    theStage.setScene(new Scene(root));
+                    theStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        btnHS.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    Stage theStage = gM.getMyStage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreHighscores.fxml"));
+                    loader.setController(new FenetreHighscores(gM));
+                    Parent root = loader.load();
                     theStage.setScene(new Scene(root));
                     theStage.show();
                 } catch (IOException e) {

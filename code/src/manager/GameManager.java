@@ -4,6 +4,10 @@ import classes.BoucleurLent;
 import classes.BoucleurRapide;
 import classes.Poisson;
 import classes.VaguePoissons;
+import highscores.ChargeurHS;
+import highscores.Highscores;
+import highscores.SauvegardeurHS;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,10 +23,20 @@ import java.io.IOException;
 
 public class GameManager {
     private final Stage myStage;
-    private VaguePoissons vP = new VaguePoissons(7);
+    private VaguePoissons vP;
+    private  Highscores hS;
 
     public GameManager(Stage myStage) {
         this.myStage = myStage;
+        this.vP = new VaguePoissons(7);
+        this.hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
+
+        vP.getListPoissons().addListener(new ListChangeListener<Poisson>() {
+            @Override
+            public void onChanged(Change<? extends Poisson> c) {
+                System.out.println("(temporaire) : listPoisson changée");
+            }
+        });
 
         //Titre + Icone + page d'accueil
         myStage.setTitle("Jeu canap' pêche");
@@ -39,6 +53,8 @@ public class GameManager {
     }
 
 
+
+
     public void startNewGame() {
         for (Poisson fish:
                 this.getvP().getListPoissons()) {
@@ -49,7 +65,7 @@ public class GameManager {
             imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
             imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
         }
-        //observer vaguePoisson dans le modèle, ici je l'ai mis dans la vue mais il faudrait le mettre ds le modèle
+
 
         BoucleurRapide boucleurRapide = new BoucleurRapide();
         BoucleurLent boucleurLent = new BoucleurLent();

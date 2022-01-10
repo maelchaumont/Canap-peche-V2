@@ -46,7 +46,7 @@ public class FenetrePrincipale {
     @FXML
     public void initialize() throws IOException { //pour les contrôleurs utiliser initialize() au lieu du constructeur
         //début d'une nouvelle partie
-        getgM().startNewGame();
+        gM.startNewGame();
 
         imgView1.setFitHeight(800);
         imgView1.setFitWidth(800);
@@ -80,10 +80,10 @@ public class FenetrePrincipale {
             @Override
             public void handle(MouseEvent event) {
                 try {
+                    Stage theStage = gM.getMyStage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreAccueil.fxml"));
                     loader.setController(new FenetreAccueil(gM));
                     Parent root = loader.load();
-                    Stage theStage = (Stage) btnAccueil.getScene().getWindow();
                     theStage.setScene(new Scene(root));
                     theStage.show();
                 } catch (IOException e) {

@@ -18,6 +18,7 @@ public class BoucleurLent extends BoucleurAbstrait{
             //voir dans la classe mère
             notifier();
             try {
+                System.out.println("testboucleurlent");
                 Thread.sleep(10000);//10 sec
             } catch (InterruptedException e) {
                 e.printStackTrace();

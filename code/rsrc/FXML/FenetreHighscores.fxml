@@ -6,9 +6,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.FenetreHighscores"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="bigBorderPane">
 
-</AnchorPane>
+    <top>
+        <Text fx:id="theHeader">Voici les meilleurs scores !</Text>
+    </top>
+
+    <center>
+        <Text fx:id="hSno1">1 - </Text>
+        <Text fx:id="hSno2">2 - </Text>
+        <Text fx:id="hSno3">3 - </Text>
+        <Text fx:id="hSno4">4 - </Text>
+        <Text fx:id="hSno5">5 - </Text>
+    </center>
+</BorderPane>
