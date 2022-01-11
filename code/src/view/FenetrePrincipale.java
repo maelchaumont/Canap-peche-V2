@@ -54,12 +54,17 @@ public class FenetrePrincipale {
         imgView1.setImage(img1);
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        gM.getvP().listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
-            @Override
-            public void onChanged(Change<? extends Poisson> c) {
-                System.out.println("a changé(dans le contrôleur)");
-            }
-        });
+
+        for (Poisson fish:
+                gM.getvP().getListPoissons()) {
+            ImageView imgViewPoisson = new ImageView();
+            imgViewPoisson.setImage(fish.getSpritePoisson());
+            imgViewPoisson.setFitHeight(50);
+            imgViewPoisson.setFitWidth(60);
+            imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
+            imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
+            bigBorderPane.getChildren().add(imgViewPoisson);
+        }
 
         //click de l'utilisateur n'importe où
         bigBorderPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {

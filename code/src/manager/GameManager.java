@@ -31,35 +31,12 @@ public class GameManager {
                 System.out.println("(temporaire) : listPoisson changée");
             }
         });
-
-        //Titre + Icone + page d'accueil
-        myStage.setTitle("Jeu canap' pêche");
-        myStage.getIcons().add(new Image("/img/fishIcon.png"));
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreAccueil.fxml"));
-            loader.setController(new FenetreAccueil(this));
-            Parent racine = loader.load();
-            this.getMyStage().setScene(new Scene(racine));
-            this.getMyStage().show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
 
 
     public void startNewGame() {
-        for (Poisson fish:
-                this.getvP().getListPoissons()) {
-            ImageView imgViewPoisson = new ImageView();
-            imgViewPoisson.setImage(fish.getSpritePoisson());
-            imgViewPoisson.setFitHeight(50);
-            imgViewPoisson.setFitWidth(60);
-            imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
-            imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
-        }
-
 
         BoucleurRapide boucleurRapide = new BoucleurRapide(this.getvP());
         BoucleurLent boucleurLent = new BoucleurLent();
@@ -88,5 +65,13 @@ public class GameManager {
 
     public void setvP(VaguePoissons vP) {
         this.vP = vP;
+    }
+
+    public Highscores gethS() {
+        return hS;
+    }
+
+    public void sethS(Highscores hS) {
+        this.hS = hS;
     }
 }

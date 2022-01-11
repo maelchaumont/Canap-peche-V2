@@ -13,7 +13,8 @@ public class AnimVaguePoisson extends Observateur{
         //test
         for (Poisson p:
              getMaVaguePoisson().getListPoissons()) {
-            p.getDeplaceurPoisson().deplacer(p);
+            if(!p.isCatched())
+                p.getDeplaceurPoisson().deplacer(p);
         }
     }
 

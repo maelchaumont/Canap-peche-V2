@@ -1,11 +1,13 @@
 package view;
 
+import com.sun.javafx.cursor.CursorFrame;
 import com.sun.javafx.fxml.FXMLLoaderHelper;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 import launcher.Launcher;
 import manager.GameManager;
 
+import java.awt.*;
 import java.io.IOException;
 
 
@@ -75,7 +78,10 @@ public class FenetreAccueil {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
                     loader.setController(new FenetrePrincipale(gM));
                     Parent root = loader.load();
-                    theStage.setScene(new Scene(root));
+                    Scene newScene = new Scene(root);
+                    Image theCursorImage = new Image("/img/bouchonPeche.png");
+                    newScene.setCursor(new ImageCursor(theCursorImage, theCursorImage.getWidth(), theCursorImage.getHeight()));
+                    theStage.setScene(newScene);
                     theStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
