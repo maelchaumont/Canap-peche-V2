@@ -10,7 +10,7 @@ public class DeplaceurLent extends Deplaceur{
         int firstMovementIsUp = r.nextInt(2);
 
         p.setCooXPoisson(p.getCooXPoisson()+5);
-        if(firstMovementIsUp == 0)
+        if(firstMovementIsUp == 0 || p.getCooYPoisson() <= 30) //ou si le poisson est trop haut(trop bas à rajouter) sur l'écran
             p.setCooYPoisson(p.getCooYPoisson()+5);
         else
             p.setCooYPoisson(p.getCooYPoisson()-5);

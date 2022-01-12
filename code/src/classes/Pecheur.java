@@ -33,4 +33,12 @@ public class Pecheur {
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
+
+    public ArrayList<Poisson> getListPoissonsAttrapes() {
+        return listPoissonsAttrapes;
+    }
+
+    public void setListPoissonsAttrapes(ArrayList<Poisson> listPoissonsAttrapes) {
+        this.listPoissonsAttrapes = listPoissonsAttrapes;
+    }
 }

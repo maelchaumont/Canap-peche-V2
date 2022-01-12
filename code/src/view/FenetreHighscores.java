@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import classes.GameManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class FenetreHighscores {
@@ -32,25 +33,15 @@ public class FenetreHighscores {
     @FXML
     private VBox theVBox;
     @FXML
-    private Text hSno1;
+    private HBox HBox1;
     @FXML
-    private Text hSno2;
+    private HBox HBox2;
     @FXML
-    private Text hSno3;
+    private HBox HBox3;
     @FXML
-    private Text hSno4;
+    private HBox HBox4;
     @FXML
-    private Text hSno5;
-    @FXML
-    private Text placeNameAndScore1;
-    @FXML
-    private Text placeNameAndScore2;
-    @FXML
-    private Text placeNameAndScore3;
-    @FXML
-    private Text placeNameAndScore4;
-    @FXML
-    private Text placeNameAndScore5;
+    private HBox HBox5;
 
     public FenetreHighscores(GameManager gM) {
         this.gM = gM;
@@ -59,17 +50,36 @@ public class FenetreHighscores {
     @FXML
     public void initialize() {
         theVBox.setSpacing(10);
-        hSno1.setFill(Color.WHITE);
-        hSno2.setFill(Color.WHITE);
-        hSno3.setFill(Color.WHITE);
-        hSno4.setFill(Color.WHITE);
-        hSno5.setFill(Color.WHITE);
-        hSno1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        hSno2.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        hSno3.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        hSno4.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        hSno5.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        placeNameAndScore1.setText(gM.gethS().getMapHighScores().toString());
+        ArrayList<Text> hS = new ArrayList<>();
+        ArrayList<Text> placeNameAndScore = new ArrayList<>();
+        for(int i=0; i<5; i++) {
+            hS.add(new Text(i + " - "));
+            placeNameAndScore.add(new Text());
+        }
+        int iter = 0;
+        for (Text t : hS) {
+            HBox varHBox = new HBox();
+            switch (iter) {
+                case 1 -> varHBox = HBox1;
+                case 2 -> varHBox = HBox2;
+                case 3 -> varHBox = HBox3;
+                case 4 -> varHBox = HBox4;
+                case 5 -> varHBox = HBox5;
+            }
+            varHBox.getChildren().add(t);
+            t.setFill(Color.WHITE);
+            t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+            iter++;
+        }
+        iter = 0;
+        for (Text t : placeNameAndScore) {
+            theVBox.getChildren().add(t);
+            placeNameAndScore.get(iter).setText(gM.gethS().getMapHighScores().toString());
+            t.setFill(Color.WHITE);
+            t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+            iter++;
+        }
+
         //placeNameAndScore1.textProperty().bind(gM.gethS().getMapHighScores().toString());
 
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();

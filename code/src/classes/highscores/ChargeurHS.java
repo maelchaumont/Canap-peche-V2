@@ -3,15 +3,14 @@ package classes.highscores;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ChargeurHS {
 
 
-    public Map<String, Integer> chargeHS() {
-        Map<String, Integer> mapTemp = new HashMap<String, Integer>();
-        Map<String, Integer> mapToReturn = new HashMap<String, Integer>();
+    public HashMap<String, Integer> chargeHS() {
+        HashMap<String, Integer> mapTemp = new HashMap<String, Integer>();
+        HashMap<String, Integer> mapToReturn = new HashMap<String, Integer>();
 
         try{
             String filename= "rsrc/data/dataHighscores.txt";

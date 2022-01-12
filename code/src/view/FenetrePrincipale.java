@@ -1,7 +1,9 @@
 package view;
 
 import classes.*;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -83,14 +85,17 @@ public class FenetrePrincipale {
             //test de l'emplacement du click
             Circle circletest = new Circle();
             bigBorderPane.getChildren().add(circletest);
-            circletest.setRadius(30);
+            circletest.setRadius(10);
             circletest.setFill(Color.WHITE);
             circletest.setCenterX(x);
             circletest.setCenterY(y);
+            System.out.println("xclick :" + x + " yclick:" + y);
             for(Poisson p : gM.getvP().getListPoissons()) {
-                if(circletest.intersects(p.getCircleClick().getLayoutBounds())) { //check si le click a lieu dans le cercle du poisson
+                Bounds boundsCirclePoisson = p.getCircleClick().getBoundsInParent();
+                if(boundsCirclePoisson.contains(x,y)) { //check si le click a lieu dans le cercle du poisson
                     p.setCatched(true);
                     gM.getLePecheur().setScorePecheur(gM.getLePecheur().getScorePecheur() + p.getValeur());
+                    gM.getLePecheur().getListPoissonsAttrapes().add(p);
                     System.out.println("Attrapé !!!");
                 }
             }

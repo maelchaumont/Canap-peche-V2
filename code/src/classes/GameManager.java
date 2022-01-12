@@ -7,17 +7,23 @@ import classes.highscores.SauvegardeurHS;
 import javafx.collections.ListChangeListener;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class GameManager {
     private final Stage myStage;
     private Pecheur lePecheur;
     private VaguePoissons vP;
     private Highscores hS;
+    private int millisSleepBoucleurRapide;
+    private int millisSleepBoucleurLent;
 
     public GameManager(Stage myStage) {
         this.myStage = myStage;
-        this.vP = new VaguePoissons(7);
-        this.hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
-        this.lePecheur = new Pecheur("temp"); //temporaire
+        vP = new VaguePoissons(7);
+        hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
+        millisSleepBoucleurRapide = 25;
+        millisSleepBoucleurLent = 10000;
+        lePecheur = new Pecheur("temp"); //temporaire
 
         vP.listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
             @Override
@@ -30,8 +36,8 @@ public class GameManager {
 
 
     public void startNewGame() {
-        BoucleurRapide boucleurRapide = new BoucleurRapide(this.getvP());
-        BoucleurLent boucleurLent = new BoucleurLent();
+        BoucleurRapide boucleurRapide = new BoucleurRapide(millisSleepBoucleurRapide, this.getvP());
+        BoucleurLent boucleurLent = new BoucleurLent(millisSleepBoucleurLent);
         Thread t1 = new Thread(boucleurRapide);
         Thread t2 = new Thread(boucleurLent);
         t1.start();

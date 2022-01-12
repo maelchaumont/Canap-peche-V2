@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class BoucleurLent extends BoucleurAbstrait{
     private String etatVague;
 
-    public BoucleurLent(){
+    public BoucleurLent(int millisSleep){
         super.setListObservateurs(new ArrayList<>());
-        super.attacher(new AnimVaguePoisson(new VaguePoissons(7)));
+        this.setMillisSleep(millisSleep);
         etatVague = "test";
     }
 
@@ -19,7 +19,7 @@ public class BoucleurLent extends BoucleurAbstrait{
             notifier();
             try {
                 System.out.println("testboucleurlent");
-                Thread.sleep(10000);//10 sec
+                Thread.sleep(getMillisSleep());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class BoucleurRapide extends BoucleurAbstrait{
     private String etatVague;
 
-    public BoucleurRapide(VaguePoissons vP){
+    public BoucleurRapide(int millisSleep, VaguePoissons vP){
         super.setListObservateurs(new ArrayList<>());
         super.attacher(new AnimVaguePoisson(vP));
+        this.setMillisSleep(millisSleep);
         etatVague = "test";
     }
 
@@ -19,7 +20,7 @@ public class BoucleurRapide extends BoucleurAbstrait{
             notifier();
             try {
                 System.out.println("testboucleur");
-                Thread.sleep(17);
+                Thread.sleep(getMillisSleep());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

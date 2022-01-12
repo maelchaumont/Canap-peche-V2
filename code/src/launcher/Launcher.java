@@ -17,12 +17,10 @@ import java.util.Map;
 
 public class Launcher extends Application {
 
-    private GameManager theManager;
-
     @Override
     public void start(Stage myStage) throws IOException {
         //Création GameManager
-        theManager = new GameManager(myStage);
+        GameManager theManager = new GameManager(myStage);
 
         //Titre + Icone + page d'accueil
         myStage.setTitle("Jeu canap' pêche");
@@ -36,24 +34,5 @@ public class Launcher extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        //nav = new Navigator(myStage);
-        //nav.changeScene("vueAccueil");
-
-        //SauvegardeurHS s = new SauvegardeurHS();
-        //s.sauvegardeHS("Machin", 46);
-        ChargeurHS c = new ChargeurHS();
-        Map<String, Integer> m = c.chargeHS();
-        System.out.println(m);
-    }
-
-
-    public GameManager getTheManager() {
-        return theManager;
-    }
-
-    public void setTheManager(GameManager theManager) {
-        this.theManager = theManager;
     }
 }

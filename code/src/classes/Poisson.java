@@ -23,11 +23,11 @@ public abstract class Poisson implements Observable {
         this.valeur = valeur;
         this.spritePoisson = spritePoisson;
         circleClick = new Circle();
-        circleClick.setRadius(30);
+        circleClick.setRadius(50);
         circleClick.setFill(Color.TRANSPARENT);
         circleClick.setStroke(Color.BLACK);
-        circleClick.translateXProperty().bind(this.cooXPoissonProperty());
-        circleClick.translateYProperty().bind(this.cooYPoissonProperty());
+        circleClick.translateXProperty().bind(this.cooXPoissonProperty().add(30));
+        circleClick.translateYProperty().bind(this.cooYPoissonProperty().add(25));
         isCatched = false;
     }
 

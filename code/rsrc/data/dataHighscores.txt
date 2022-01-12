@@ -1,2 +1,4 @@
 Mimi -> 15
 Machin -> 46
+Toto -> 420
+Bidule -> 4

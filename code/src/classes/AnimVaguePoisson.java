@@ -4,7 +4,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 
 public class AnimVaguePoisson extends Observateur{
-    private String etatVaguePoisson;
     private VaguePoissons maVaguePoisson;
 
     public AnimVaguePoisson(VaguePoissons maVaguePoisson) {
@@ -26,14 +25,6 @@ public class AnimVaguePoisson extends Observateur{
 
 
     //GETTERS & SETTERS
-    public String getEtatVaguePoisson() {
-        return etatVaguePoisson;
-    }
-
-    public void setEtatVaguePoisson(String etatVaguePoisson) {
-        this.etatVaguePoisson = etatVaguePoisson;
-    }
-
     public VaguePoissons getMaVaguePoisson() {
         return maVaguePoisson;
     }

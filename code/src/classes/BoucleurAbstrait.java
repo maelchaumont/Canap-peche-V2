@@ -3,6 +3,7 @@ package classes;
 import java.util.ArrayList;
 
 public abstract class BoucleurAbstrait implements Runnable{
+    private int millisSleep;
     private ArrayList<Observateur> listObservateurs;
 
     public void attacher(Observateur o) {
@@ -28,5 +29,13 @@ public abstract class BoucleurAbstrait implements Runnable{
 
     public void setListObservateurs(ArrayList<Observateur> listObservateurs) {
         this.listObservateurs = listObservateurs;
+    }
+
+    public int getMillisSleep() {
+        return millisSleep;
+    }
+
+    public void setMillisSleep(int millisSleep) {
+        this.millisSleep = millisSleep;
     }
 }
