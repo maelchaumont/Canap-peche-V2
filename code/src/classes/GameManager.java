@@ -1,29 +1,23 @@
-package manager;
+package classes;
 
 import classes.*;
 import classes.highscores.ChargeurHS;
 import classes.highscores.Highscores;
 import classes.highscores.SauvegardeurHS;
 import javafx.collections.ListChangeListener;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import view.FenetreAccueil;
-
-import java.io.IOException;
 
 public class GameManager {
     private final Stage myStage;
+    private Pecheur lePecheur;
     private VaguePoissons vP;
-    private  Highscores hS;
+    private Highscores hS;
 
     public GameManager(Stage myStage) {
         this.myStage = myStage;
         this.vP = new VaguePoissons(7);
         this.hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
+        this.lePecheur = new Pecheur("temp"); //temporaire
 
         vP.listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
             @Override
@@ -35,16 +29,13 @@ public class GameManager {
 
 
 
-
     public void startNewGame() {
-
         BoucleurRapide boucleurRapide = new BoucleurRapide(this.getvP());
         BoucleurLent boucleurLent = new BoucleurLent();
         Thread t1 = new Thread(boucleurRapide);
         Thread t2 = new Thread(boucleurLent);
         t1.start();
         t2.start();
-
 
 
         vP.getListPoissons().add(new PoissonBombe(5,5));
@@ -73,5 +64,13 @@ public class GameManager {
 
     public void sethS(Highscores hS) {
         this.hS = hS;
+    }
+
+    public Pecheur getLePecheur() {
+        return lePecheur;
+    }
+
+    public void setLePecheur(Pecheur lePecheur) {
+        this.lePecheur = lePecheur;
     }
 }

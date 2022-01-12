@@ -18,10 +18,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import manager.GameManager;
+import classes.GameManager;
 
 import java.io.IOException;
-import java.util.Set;
 
 
 public class FenetreHighscores {

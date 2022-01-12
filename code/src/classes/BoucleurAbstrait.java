@@ -18,7 +18,7 @@ public abstract class BoucleurAbstrait implements Runnable{
                 getListObservateurs()) {
             o.update();
         }
-        //dire qu'on récupère le beep
+        //on récupère le beep et update les Observateurs
     }
 
     //GETTERS & SETTERS

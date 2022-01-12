@@ -1,12 +1,11 @@
 package view;
 
-import com.sun.javafx.cursor.CursorFrame;
-import com.sun.javafx.fxml.FXMLLoaderHelper;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,11 +15,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import launcher.Launcher;
-import manager.GameManager;
+import classes.GameManager;
 
-import java.awt.*;
 import java.io.IOException;
 
 
@@ -46,10 +44,13 @@ public class FenetreAccueil {
     @FXML
     public void initialize() {
         stackPaneCenter.getChildren().addAll(vboxButtons, backgroundAccueil);
-
         borderPaneAccueil.setCenter(stackPaneCenter);
-        backgroundAccueil.setFitHeight(800);
-        backgroundAccueil.setFitWidth(800);
+
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        double theHeight = screenBounds.getHeight() * (80/100.0);
+        double theWidth = screenBounds.getWidth() * (80/100.0);
+        backgroundAccueil.setFitHeight(theHeight);
+        backgroundAccueil.setFitWidth(theWidth);
         backgroundAccueil.setImage(imgBackAccueil);
         borderPaneAccueil.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 

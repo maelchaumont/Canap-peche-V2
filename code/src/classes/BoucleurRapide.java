@@ -1,7 +1,5 @@
 package classes;
 
-import manager.GameManager;
-
 import java.util.ArrayList;
 
 public class BoucleurRapide extends BoucleurAbstrait{

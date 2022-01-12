@@ -1,27 +1,20 @@
 package view;
 
 import classes.*;
-import javafx.collections.ListChangeListener;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
-import launcher.Launcher;
-import manager.GameManager;
+import javafx.scene.text.Text;
+import javafx.stage.Screen;
+import classes.GameManager;
 
 
 import java.io.IOException;
@@ -33,6 +26,12 @@ public class FenetrePrincipale {
 
     @FXML
     private BorderPane bigBorderPane;
+
+    @FXML
+    private Text statsPseudo;
+
+    @FXML
+    private Text statsScore;
 
     @FXML
     private ImageView imgView1;
@@ -49,9 +48,15 @@ public class FenetrePrincipale {
         //début d'une nouvelle partie
         gM.startNewGame();
 
-        imgView1.setFitHeight(800);
-        imgView1.setFitWidth(800);
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        double theHeight = screenBounds.getHeight() * (80/100.0);
+        double theWidth = screenBounds.getWidth() * (80/100.0);
+        imgView1.setFitHeight(theHeight);
+        imgView1.setFitWidth(theWidth);
         imgView1.setImage(img1);
+
+        statsPseudo.setText(gM.getLePecheur().getPseudo());
+        statsScore.textProperty().bind(gM.getLePecheur().scorePecheurProperty().asString());
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
@@ -63,7 +68,9 @@ public class FenetrePrincipale {
             imgViewPoisson.setFitWidth(60);
             imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
             imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
+            fish.getCircleClick().translateYProperty().bind(fish.cooYPoissonProperty());
             bigBorderPane.getChildren().add(imgViewPoisson);
+            bigBorderPane.getChildren().add(fish.getCircleClick());
         }
 
         //click de l'utilisateur n'importe où
@@ -76,16 +83,24 @@ public class FenetrePrincipale {
             //test de l'emplacement du click
             Circle circletest = new Circle();
             bigBorderPane.getChildren().add(circletest);
-            circletest.setRadius(15);
+            circletest.setRadius(30);
             circletest.setFill(Color.WHITE);
             circletest.setCenterX(x);
             circletest.setCenterY(y);
+            for(Poisson p : gM.getvP().getListPoissons()) {
+                if(circletest.intersects(p.getCircleClick().getLayoutBounds())) { //check si le click a lieu dans le cercle du poisson
+                    p.setCatched(true);
+                    gM.getLePecheur().setScorePecheur(gM.getLePecheur().getScorePecheur() + p.getValeur());
+                    System.out.println("Attrapé !!!");
+                }
+            }
 
             //Déplacement du poisson à des coo fixes(instantanément...)
             //poissontest.setDeplaceurPoisson(new DeplaceurLent());
             //poissontest.getDeplaceurPoisson().deplacer(poissontest, 200, 200);
         });
 
+        /*
         bigBorderPane.setRight(btnAccueil);
         //click de l'utilisateur sur le bouton d'accueil
         btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
@@ -103,6 +118,7 @@ public class FenetrePrincipale {
                 }
             }
         });
+        */
     }
 
 

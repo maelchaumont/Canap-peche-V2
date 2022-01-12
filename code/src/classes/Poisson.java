@@ -6,6 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public abstract class Poisson implements Observable {
     private int poids;
@@ -13,12 +15,19 @@ public abstract class Poisson implements Observable {
     private Deplaceur deplaceurPoisson;
     private Image spritePoisson;
     private boolean isCatched;
+    private Circle circleClick;
 
     //constructeur
     public Poisson(Image spritePoisson, int poids, int valeur) {
         this.poids = poids;
         this.valeur = valeur;
         this.spritePoisson = spritePoisson;
+        circleClick = new Circle();
+        circleClick.setRadius(30);
+        circleClick.setFill(Color.TRANSPARENT);
+        circleClick.setStroke(Color.BLACK);
+        circleClick.translateXProperty().bind(this.cooXPoissonProperty());
+        circleClick.translateYProperty().bind(this.cooYPoissonProperty());
         isCatched = false;
     }
 
@@ -76,6 +85,14 @@ public abstract class Poisson implements Observable {
 
     public void setCatched(boolean catched) {
         isCatched = catched;
+    }
+
+    public Circle getCircleClick() {
+        return circleClick;
+    }
+
+    public void setCircleClick(Circle circleClick) {
+        this.circleClick = circleClick;
     }
 
 

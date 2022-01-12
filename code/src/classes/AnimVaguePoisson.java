@@ -1,5 +1,8 @@
 package classes;
 
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
+
 public class AnimVaguePoisson extends Observateur{
     private String etatVaguePoisson;
     private VaguePoissons maVaguePoisson;
@@ -10,11 +13,14 @@ public class AnimVaguePoisson extends Observateur{
 
     @Override
     public void update() {
-        //test
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        double endOfScreen = screenBounds.getMaxX();
+
         for (Poisson p:
              getMaVaguePoisson().getListPoissons()) {
             if(!p.isCatched())
                 p.getDeplaceurPoisson().deplacer(p);
+            //if(p.getCooXPoisson() >= endOfScreen)
         }
     }
 
