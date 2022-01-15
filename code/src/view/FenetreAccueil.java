@@ -24,17 +24,17 @@ import java.io.IOException;
 
 public class FenetreAccueil {
     private Image imgBackAccueil = new Image("/img/gifBackAccueil");
-    private ImageView backgroundAccueil = new ImageView();
-    private Button btnJouer = new Button("Jouer");
+    private Button btnTutoJouer = new Button("Tutoriel + Jouer");
     private Button btnHS = new Button("Highscores");
     private VBox vboxButtons = new VBox(20);
-    private StackPane stackPaneCenter = new StackPane();
     private GameManager gM;
 
 
 
     @FXML
     private BorderPane borderPaneAccueil;
+    @FXML
+    private BorderPane borderPaneCenter;
 
     public FenetreAccueil(GameManager gM) {
         this.gM = gM;
@@ -43,29 +43,31 @@ public class FenetreAccueil {
 
     @FXML
     public void initialize() {
-        stackPaneCenter.getChildren().addAll(vboxButtons, backgroundAccueil);
-        borderPaneAccueil.setCenter(stackPaneCenter);
-
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         double theHeight = screenBounds.getHeight() * (80/100.0);
         double theWidth = screenBounds.getWidth() * (80/100.0);
-        backgroundAccueil.setFitHeight(theHeight);
-        backgroundAccueil.setFitWidth(theWidth);
-        backgroundAccueil.setImage(imgBackAccueil);
+        borderPaneAccueil.setPrefHeight(theHeight);
+        borderPaneAccueil.setPrefWidth(theWidth);
+
         borderPaneAccueil.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        BackgroundSize bGS = new BackgroundSize(theWidth, theHeight, false, false, false, false);
+        Background bGC = new Background(new BackgroundImage(new Image("img/gifBackAccueil"),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                bGS));
+        borderPaneCenter.setBackground(bGC);
 
         vboxButtons.setAlignment(Pos.CENTER);
-        vboxButtons.setTranslateX(50);
-        vboxButtons.setTranslateY(50);
-        btnJouer.setMinWidth(50);
+        btnTutoJouer.setMinWidth(50);
         btnHS.setMinWidth(75);
-        vboxButtons.getChildren().add(btnJouer);
+        vboxButtons.getChildren().add(btnTutoJouer);
         vboxButtons.getChildren().add(btnHS);
-        borderPaneAccueil.getChildren().add(vboxButtons);
+        borderPaneCenter.setCenter(vboxButtons);
 
 
         //HANDLERS BUTTONS
-        btnJouer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
+        btnTutoJouer.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
@@ -76,12 +78,11 @@ public class FenetreAccueil {
                     theStage.show();
                      */
                     Stage theStage = gM.getMyStage();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
-                    loader.setController(new FenetrePrincipale(gM));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreLogEtTuto.fxml"));
+                    loader.setController(new FenetreLogEtTuto(gM));
                     Parent root = loader.load();
                     Scene newScene = new Scene(root);
-                    Image theCursorImage = new Image("/img/bouchonPeche.png");
-                    newScene.setCursor(new ImageCursor(theCursorImage, theCursorImage.getWidth(), theCursorImage.getHeight()));
+                    newScene.getStylesheets().add("css/styles.css");
                     theStage.setScene(newScene);
                     theStage.show();
                 } catch (IOException e) {
@@ -98,7 +99,9 @@ public class FenetreAccueil {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreHighscores.fxml"));
                     loader.setController(new FenetreHighscores(gM));
                     Parent root = loader.load();
-                    theStage.setScene(new Scene(root));
+                    Scene theScene = new Scene(root);
+                    theScene.getStylesheets().add("css/styles.css");
+                    theStage.setScene(theScene);
                     theStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();

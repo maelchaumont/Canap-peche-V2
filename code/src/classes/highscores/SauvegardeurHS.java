@@ -6,17 +6,15 @@ import java.io.IOException;
 
 public class SauvegardeurHS {
 
-    public void sauvegardeHS(String pseudo, Integer score) throws IOException {
+    public void sauvegardeHS(Integer score, String pseudo) throws IOException {
 
         try
         {
             String filename= "rsrc/data/dataHighscores.txt";
             File theFile = new File(filename);
-            if(!theFile.exists())
-                theFile.createNewFile();
 
             FileWriter fw = new FileWriter(filename,true);
-            fw.write(pseudo + " -> " + score + System.getProperty("line.separator"));
+            fw.write(score + " -> " + pseudo + System.getProperty("line.separator"));
             fw.close();
         }
         catch(IOException ioe)

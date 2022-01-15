@@ -3,13 +3,14 @@ package classes;
 import java.util.ArrayList;
 
 public class BoucleurRapide extends BoucleurAbstrait{
-    private String etatVague;
 
-    public BoucleurRapide(int millisSleep, VaguePoissons vP){
+    public BoucleurRapide(int millisSleep, VaguePoissons vP, GameManager myGm){
         super.setListObservateurs(new ArrayList<>());
         super.attacher(new AnimVaguePoisson(vP));
         this.setMillisSleep(millisSleep);
-        etatVague = "test";
+        Timer myTimer = new Timer(45, getMillisSleep(), myGm);
+        super.attacher(myTimer);
+        myGm.setTheTimer(myTimer);
     }
 
 
@@ -25,13 +26,5 @@ public class BoucleurRapide extends BoucleurAbstrait{
                 e.printStackTrace();
             }
         }
-    }
-
-    public String getEtatVague() {
-        return etatVague;
-    }
-
-    public void setEtatVague(String etatVague) {
-        this.etatVague = etatVague;
     }
 }

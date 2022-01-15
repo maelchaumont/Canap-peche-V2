@@ -11,4 +11,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:id="borderPaneAccueil">
 
+    <center>
+        <BorderPane fx:id="borderPaneCenter">
+
+        </BorderPane>
+    </center>
 </BorderPane>

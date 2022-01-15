@@ -1,14 +1,21 @@
 package classes.highscores;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 public class Highscores {
-    private Map<String, Integer> mapHighScores;
+    private Map<Integer, String> mapHighScores;
     private SauvegardeurHS sHS;
     private ChargeurHS cHS;
 
     //CONSTRUCTEUR
-    public Highscores(SauvegardeurHS sHS, ChargeurHS cHS) {
+    public Highscores(SauvegardeurHS sHS, ChargeurHS cHS) throws IOException {
+        String filename= "rsrc/data/dataHighscores.txt";
+        File theFile = new File(filename);
+        if(!theFile.exists())
+            theFile.createNewFile();
+
         this.sHS = sHS;
         this.cHS = cHS;
         this.mapHighScores = cHS.chargeHS();
@@ -16,11 +23,11 @@ public class Highscores {
 
 
     //GETTERS & SETTERS
-    public Map<String, Integer> getMapHighScores() {
+    public Map<Integer, String> getMapHighScores() {
         return mapHighScores;
     }
 
-    public void setMapHighScores(Map<String, Integer> mapHighScores) {
+    public void setMapHighScores(Map<Integer, String> mapHighScores) {
         this.mapHighScores = mapHighScores;
     }
 

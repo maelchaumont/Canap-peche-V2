@@ -25,7 +25,7 @@ public abstract class Poisson implements Observable {
         circleClick = new Circle();
         circleClick.setRadius(50);
         circleClick.setFill(Color.TRANSPARENT);
-        circleClick.setStroke(Color.BLACK);
+        circleClick.setStroke(Color.TRANSPARENT);
         circleClick.translateXProperty().bind(this.cooXPoissonProperty().add(30));
         circleClick.translateYProperty().bind(this.cooYPoissonProperty().add(25));
         isCatched = false;

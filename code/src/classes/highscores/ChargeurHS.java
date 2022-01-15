@@ -8,9 +8,9 @@ import java.util.*;
 public class ChargeurHS {
 
 
-    public HashMap<String, Integer> chargeHS() {
-        HashMap<String, Integer> mapTemp = new HashMap<String, Integer>();
-        HashMap<String, Integer> mapToReturn = new HashMap<String, Integer>();
+    public HashMap<Integer, String> chargeHS() {
+        HashMap<Integer, String> mapTemp = new HashMap<Integer, String>();
+        HashMap<Integer, String> mapToReturn = new HashMap<Integer, String>();
 
         try{
             String filename= "rsrc/data/dataHighscores.txt";
@@ -20,7 +20,7 @@ public class ChargeurHS {
 
             while ((ligneLue = bfr.readLine()) != null) {
                 String[] ligneLueSplit = ligneLue.split(" -> "); //découpe la ligne
-                mapTemp.put(ligneLueSplit[0], Integer.parseInt(ligneLueSplit[1])); //ajoute la ligne dans la Map
+                mapTemp.put(Integer.parseInt(ligneLueSplit[0]), ligneLueSplit[1]); //ajoute la ligne dans la Map
             }
             bfr.close();
             fr.close();
@@ -29,21 +29,13 @@ public class ChargeurHS {
             e.printStackTrace();
         }
 
-        for (final Map.Entry<String, Integer> entry : mapTemp.entrySet()) {
+        //petit problème pour le moment, des personnes différentes ne peuvent pas avoir le mm score
+        for (final Map.Entry<Integer, String> entry : mapTemp.entrySet()) {
             if(mapToReturn.size() == 5) break;
 
-            String key =  entry.getKey();
-            int value =  entry.getValue();
-            boolean alreadyExists = false;
-
-            for (final Map.Entry<String, Integer> entryMapToReturn : mapToReturn.entrySet()) {
-                if (entry.equals(entryMapToReturn)) {
-                    alreadyExists = true;
-                    break;
-                }
-            }
-            if(!alreadyExists)
-                mapToReturn.put(key, value);
+            int key =  entry.getKey();
+            String value =  entry.getValue();
+            mapToReturn.put(key, value);
         }
         return mapToReturn;
     }

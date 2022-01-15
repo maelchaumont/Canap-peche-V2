@@ -3,12 +3,11 @@ package classes;
 import java.util.ArrayList;
 
 public class BoucleurLent extends BoucleurAbstrait{
-    private String etatVague;
 
-    public BoucleurLent(int millisSleep){
+    public BoucleurLent(int millisSleep, VaguePoissons vP){
         super.setListObservateurs(new ArrayList<>());
+        super.attacher(new ObservateurCreationPoisson(vP));
         this.setMillisSleep(millisSleep);
-        etatVague = "test";
     }
 
 
@@ -24,13 +23,5 @@ public class BoucleurLent extends BoucleurAbstrait{
                 e.printStackTrace();
             }
         }
-    }
-
-    public String getEtatVague() {
-        return etatVague;
-    }
-
-    public void setEtatVague(String etatVague) {
-        this.etatVague = etatVague;
     }
 }

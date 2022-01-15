@@ -6,9 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.FenetreLogEtTuto"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="borderPaneGeneral">
 
-</AnchorPane>
+    <top>
+        <Text styleClass="p10"> </Text>
+    </top>
+
+    <bottom>
+        <Button fx:id="startTheGame">Start the Game !</Button>
+    </bottom>
+
+</BorderPane>

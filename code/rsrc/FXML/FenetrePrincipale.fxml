@@ -6,14 +6,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.shape.Box?>
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:id="bigBorderPane">
+
+    <top>
+        <HBox styleClass="centeredAndBackWhite">
+            <Text>Temps restant : </Text>
+            <Text fx:id="timeDisplay" style="fx-padding:10px;"> </Text>
+            <Text> secondes</Text>
+        </HBox>
+    </top>
 
     <bottom>
         <HBox>
@@ -29,7 +34,7 @@
         <HBox>
             <ImageView fx:id="imgView1"> </ImageView>
 
-            <VBox fx:id="stats" style="-fx-background-color:white; -fx-padding:10px;">
+            <VBox fx:id="stats" styleClass="centeredAndBackWhite">
                 <HBox>
                     <Text>Pseudo : </Text>
                     <Text fx:id="statsPseudo"> </Text>

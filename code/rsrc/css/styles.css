@@ -1,0 +1,20 @@
+.p10 {
+    -fx-padding: 10px;
+}
+
+.contentCentered {
+    -fx-alignment: center;
+    -fx-justify: center;
+}
+
+.centeredAndBackWhite {
+    -fx-background-color: white;
+    -fx-alignment: center;
+}
+
+.verdanaWhiteText {
+    -fx-fill: white;
+    -fx-font-family: verdana;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}

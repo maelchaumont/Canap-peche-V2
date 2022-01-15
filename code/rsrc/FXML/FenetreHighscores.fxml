@@ -17,12 +17,16 @@
 
 
     <center>
-        <VBox fx:id="theVBox" alignment="CENTER">
-            <HBox fx:id="HBox1"></HBox>
-            <HBox fx:id="HBox2"></HBox>
-            <HBox fx:id="HBox3"></HBox>
-            <HBox fx:id="HBox4"></HBox>
-            <HBox fx:id="HBox5"></HBox>
-        </VBox>
+        <BorderPane fx:id="otherBorderPane">
+            <center>
+                <VBox fx:id="theVBox" alignment="CENTER">
+                    <HBox fx:id="HBox1"></HBox>
+                    <HBox fx:id="HBox2"></HBox>
+                    <HBox fx:id="HBox3"></HBox>
+                    <HBox fx:id="HBox4"></HBox>
+                    <HBox fx:id="HBox5"></HBox>
+                </VBox>
+            </center>
+        </BorderPane>
     </center>
 </BorderPane>

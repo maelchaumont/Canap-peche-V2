@@ -29,7 +29,9 @@ public class Launcher extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreAccueil.fxml"));
             loader.setController(new FenetreAccueil(theManager));
             Parent racine = loader.load();
-            myStage.setScene(new Scene(racine));
+            Scene theScene = new Scene(racine);
+            theScene.getStylesheets().add("css/styles.css");
+            myStage.setScene(theScene);
             myStage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,4 +1,3 @@
-Mimi -> 15
-Machin -> 46
-Toto -> 420
-Bidule -> 4
+25 -> truc
+42 -> hehe
+160 -> nvNom

@@ -16,11 +16,19 @@ public class GameManager {
     private Highscores hS;
     private int millisSleepBoucleurRapide;
     private int millisSleepBoucleurLent;
+    private Timer theTimer;
+    private Thread t1;
+    private Thread t2;
 
     public GameManager(Stage myStage) {
         this.myStage = myStage;
         vP = new VaguePoissons(7);
-        hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
+        try {
+            hS = new Highscores(new SauvegardeurHS(), new ChargeurHS());
+            System.out.println(hS.getMapHighScores().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         millisSleepBoucleurRapide = 25;
         millisSleepBoucleurLent = 10000;
         lePecheur = new Pecheur("temp"); //temporaire
@@ -36,10 +44,10 @@ public class GameManager {
 
 
     public void startNewGame() {
-        BoucleurRapide boucleurRapide = new BoucleurRapide(millisSleepBoucleurRapide, this.getvP());
-        BoucleurLent boucleurLent = new BoucleurLent(millisSleepBoucleurLent);
-        Thread t1 = new Thread(boucleurRapide);
-        Thread t2 = new Thread(boucleurLent);
+        BoucleurRapide boucleurRapide = new BoucleurRapide(millisSleepBoucleurRapide, vP, this);
+        BoucleurLent boucleurLent = new BoucleurLent(millisSleepBoucleurLent, vP);
+        t1 = new Thread(boucleurRapide);
+        t2 = new Thread(boucleurLent);
         t1.start();
         t2.start();
 
@@ -48,6 +56,12 @@ public class GameManager {
         vP.getListPoissons().get(3).setCooXPoisson(200);
         vP.getListPoissons().get(3).setPoids(45);
         vP.getListPoissons().get(3).setCooXPoisson(250);
+    }
+
+    public void gameOver() {
+        System.out.println("game over ;)");
+        t2.stop();
+        t1.stop();
     }
 
 
@@ -78,5 +92,29 @@ public class GameManager {
 
     public void setLePecheur(Pecheur lePecheur) {
         this.lePecheur = lePecheur;
+    }
+
+    public int getMillisSleepBoucleurRapide() {
+        return millisSleepBoucleurRapide;
+    }
+
+    public void setMillisSleepBoucleurRapide(int millisSleepBoucleurRapide) {
+        this.millisSleepBoucleurRapide = millisSleepBoucleurRapide;
+    }
+
+    public int getMillisSleepBoucleurLent() {
+        return millisSleepBoucleurLent;
+    }
+
+    public void setMillisSleepBoucleurLent(int millisSleepBoucleurLent) {
+        this.millisSleepBoucleurLent = millisSleepBoucleurLent;
+    }
+
+    public Timer getTheTimer() {
+        return theTimer;
+    }
+
+    public void setTheTimer(Timer theTimer) {
+        this.theTimer = theTimer;
     }
 }
