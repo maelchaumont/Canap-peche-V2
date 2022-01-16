@@ -2,9 +2,7 @@ package classes;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -13,15 +11,16 @@ public abstract class Poisson implements Observable {
     private int poids;
     private int valeur;
     private Deplaceur deplaceurPoisson;
-    private Image spritePoisson;
     private boolean isCatched;
     private Circle circleClick;
 
     //constructeur
-    public Poisson(Image spritePoisson, int poids, int valeur) {
+    public Poisson(Image myImage, int poids, int valeur) {
         this.poids = poids;
         this.valeur = valeur;
-        this.spritePoisson = spritePoisson;
+        setSpritePoisson(myImage);
+        setHeightSprite(50);
+        setWidthSprite(60);
         circleClick = new Circle();
         circleClick.setRadius(50);
         circleClick.setFill(Color.TRANSPARENT);
@@ -33,15 +32,30 @@ public abstract class Poisson implements Observable {
 
 
     //binding
+    private ObjectProperty<Image> spritePoisson = new SimpleObjectProperty<>();
+    public Image getSpritePoisson(){return spritePoisson.get();}
+    public void setSpritePoisson(Image nvImage){spritePoisson.set(nvImage);}
+    public ObjectProperty<Image> spritePoissonProperty(){return spritePoisson;}
+
+    private DoubleProperty heightSprite = new SimpleDoubleProperty();
+    public double getHeightSprite(){return heightSprite.get();}
+    public void setHeightSprite(double nvHeight){heightSprite.set(nvHeight);}
+    public ReadOnlyDoubleProperty heightSpriteProperty(){return heightSprite;}
+
+    private DoubleProperty widthSprite = new SimpleDoubleProperty();
+    public double getWidthSprite(){return widthSprite.get();}
+    public void setWidthSprite(double nvWidth){widthSprite.set(nvWidth);}
+    public ReadOnlyDoubleProperty widthSpriteProperty(){return widthSprite;}
+
     private IntegerProperty cooXPoisson = new SimpleIntegerProperty();
-        public Integer getCooXPoisson(){return cooXPoisson.get();}
-        public void setCooXPoisson(int nvCoo){cooXPoisson.set(nvCoo);}
-        public ReadOnlyIntegerProperty cooXPoissonProperty(){return cooXPoisson;}
+    public Integer getCooXPoisson(){return cooXPoisson.get();}
+    public void setCooXPoisson(int nvCoo){cooXPoisson.set(nvCoo);}
+    public ReadOnlyIntegerProperty cooXPoissonProperty(){return cooXPoisson;}
 
     private IntegerProperty cooYPoisson = new SimpleIntegerProperty();
-        public Integer getCooYPoisson(){return cooYPoisson.get();}
-        public void setCooYPoisson(int nvCoo){cooYPoisson.set(nvCoo);}
-        public ReadOnlyIntegerProperty cooYPoissonProperty(){return cooYPoisson;}
+    public Integer getCooYPoisson(){return cooYPoisson.get();}
+    public void setCooYPoisson(int nvCoo){cooYPoisson.set(nvCoo);}
+    public ReadOnlyIntegerProperty cooYPoissonProperty(){return cooYPoisson;}
 
 
 
@@ -69,14 +83,6 @@ public abstract class Poisson implements Observable {
 
     public void setValeur(int valeur) {
         this.valeur = valeur;
-    }
-
-    public Image getSpritePoisson() {
-        return spritePoisson;
-    }
-
-    public void setSpritePoisson(Image spritePoisson) {
-        this.spritePoisson = spritePoisson;
     }
 
     public boolean isCatched() {

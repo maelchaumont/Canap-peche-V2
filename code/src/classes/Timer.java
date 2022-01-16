@@ -20,7 +20,7 @@ public class Timer extends Observateur{
         }
         else {
             setActualTime(0);
-            gM.gameOver();
+            //gM.gameOver();
         }
     }
 

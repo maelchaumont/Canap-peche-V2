@@ -6,9 +6,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.FenetreGameOver"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="bigBorderPane">
 
-</AnchorPane>
+    <center>
+        <VBox styleClass="contentCentered">
+            <Button fx:id="btnReplay" styleClass="aliceblueText25">Rejouer !</Button>
+            <Button fx:id="btnBackToAccueil" styleClass="aliceblueText25">Retour à l'Accueil</Button>
+        </VBox>
+    </center>
+
+</BorderPane>

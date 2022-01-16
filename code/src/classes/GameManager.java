@@ -17,8 +17,8 @@ public class GameManager {
     private int millisSleepBoucleurRapide;
     private int millisSleepBoucleurLent;
     private Timer theTimer;
-    private Thread t1;
-    private Thread t2;
+    private Thread thread1;
+    private Thread thread2;
 
     public GameManager(Stage myStage) {
         this.myStage = myStage;
@@ -31,7 +31,6 @@ public class GameManager {
         }
         millisSleepBoucleurRapide = 25;
         millisSleepBoucleurLent = 10000;
-        lePecheur = new Pecheur("temp"); //temporaire
 
         vP.listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
             @Override
@@ -44,24 +43,13 @@ public class GameManager {
 
 
     public void startNewGame() {
+        lePecheur.setScorePecheur(0);
         BoucleurRapide boucleurRapide = new BoucleurRapide(millisSleepBoucleurRapide, vP, this);
         BoucleurLent boucleurLent = new BoucleurLent(millisSleepBoucleurLent, vP);
-        t1 = new Thread(boucleurRapide);
-        t2 = new Thread(boucleurLent);
-        t1.start();
-        t2.start();
-
-
-        vP.getListPoissons().add(new PoissonBombe(5,5));
-        vP.getListPoissons().get(3).setCooXPoisson(200);
-        vP.getListPoissons().get(3).setPoids(45);
-        vP.getListPoissons().get(3).setCooXPoisson(250);
-    }
-
-    public void gameOver() {
-        System.out.println("game over ;)");
-        t2.stop();
-        t1.stop();
+        thread1 = new Thread(boucleurRapide);
+        thread2 = new Thread(boucleurLent);
+        thread1.start();
+        thread2.start();
     }
 
 
@@ -94,27 +82,27 @@ public class GameManager {
         this.lePecheur = lePecheur;
     }
 
-    public int getMillisSleepBoucleurRapide() {
-        return millisSleepBoucleurRapide;
-    }
-
-    public void setMillisSleepBoucleurRapide(int millisSleepBoucleurRapide) {
-        this.millisSleepBoucleurRapide = millisSleepBoucleurRapide;
-    }
-
-    public int getMillisSleepBoucleurLent() {
-        return millisSleepBoucleurLent;
-    }
-
-    public void setMillisSleepBoucleurLent(int millisSleepBoucleurLent) {
-        this.millisSleepBoucleurLent = millisSleepBoucleurLent;
-    }
-
     public Timer getTheTimer() {
         return theTimer;
     }
 
     public void setTheTimer(Timer theTimer) {
         this.theTimer = theTimer;
+    }
+
+    public Thread getThread1() {
+        return thread1;
+    }
+
+    public void setThread1(Thread thread1) {
+        this.thread1 = thread1;
+    }
+
+    public Thread getThread2() {
+        return thread2;
+    }
+
+    public void setThread2(Thread thread2) {
+        this.thread2 = thread2;
     }
 }

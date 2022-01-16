@@ -2,9 +2,30 @@
     -fx-padding: 10px;
 }
 
+.p25 {
+    -fx-padding: 25px;
+}
+
 .contentCentered {
     -fx-alignment: center;
     -fx-justify: center;
+}
+
+.contentCenteredp10 {
+    -fx-alignment: center;
+    -fx-justify: center;
+    -fx-padding: 10px;
+}
+
+.contentCenteredp25 {
+    -fx-alignment: center;
+    -fx-justify: center;
+    -fx-padding: 25px;
+}
+
+.whiteText {
+    -fx-fill: white;
+    -fx-font-size: 15;
 }
 
 .centeredAndBackWhite {
@@ -16,5 +37,17 @@
     -fx-fill: white;
     -fx-font-family: verdana;
     -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.aliceblueText25{
+    -fx-fill: aliceblue;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+
+.blackTitle{
+    -fx-fill: black;
+    -fx-font-size: 30;
     -fx-font-weight: bold;
 }

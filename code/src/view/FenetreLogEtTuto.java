@@ -1,6 +1,7 @@
 package view;
 
 import classes.GameManager;
+import classes.Pecheur;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -33,6 +35,8 @@ public class FenetreLogEtTuto {
     private BorderPane borderPaneGeneral;
     @FXML
     private Button startTheGame;
+    @FXML
+    private TextField pseudo;
 
 
     @FXML
@@ -46,25 +50,29 @@ public class FenetreLogEtTuto {
 
         borderPaneGeneral.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
 
-
         //HANDLERS BUTTONS
         startTheGame.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    Stage theStage = gM.getMyStage();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
-                    loader.setController(new FenetrePrincipale(gM));
-                    Parent root = loader.load();
-                    Scene newScene = new Scene(root);
-                    newScene.getStylesheets().add("css/styles.css");
-                    Image theCursorImage = new Image("/img/bouchonPeche.png");
-                    newScene.setCursor(new ImageCursor(theCursorImage, theCursorImage.getWidth(), theCursorImage.getHeight()));
-                    theStage.setScene(newScene);
-                    theStage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(!pseudo.getText().equals("")) {
+                    gM.setLePecheur(new Pecheur(pseudo.getText()));
+                    try {
+                        Stage theStage = gM.getMyStage();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetrePrincipale.fxml"));
+                        loader.setController(new FenetrePrincipale(gM));
+                        Parent root = loader.load();
+                        Scene newScene = new Scene(root);
+                        newScene.getStylesheets().add("css/styles.css");
+                        Image theCursorImage = new Image("/img/bouchonPeche.png");
+                        newScene.setCursor(new ImageCursor(theCursorImage, theCursorImage.getWidth(), theCursorImage.getHeight()));
+                        theStage.setScene(newScene);
+                        theStage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                else
+                    pseudo.setPromptText("Renseignez un pseudo !");
             }
         });
     }

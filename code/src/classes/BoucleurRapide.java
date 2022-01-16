@@ -6,9 +6,9 @@ public class BoucleurRapide extends BoucleurAbstrait{
 
     public BoucleurRapide(int millisSleep, VaguePoissons vP, GameManager myGm){
         super.setListObservateurs(new ArrayList<>());
-        super.attacher(new AnimVaguePoisson(vP));
+        super.attacher(new AnimVaguePoisson(vP, myGm));
         this.setMillisSleep(millisSleep);
-        Timer myTimer = new Timer(45, getMillisSleep(), myGm);
+        Timer myTimer = new Timer(5, getMillisSleep(), myGm);
         super.attacher(myTimer);
         myGm.setTheTimer(myTimer);
     }

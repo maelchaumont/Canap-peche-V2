@@ -2,11 +2,18 @@ package view;
 
 import classes.*;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
@@ -22,6 +29,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import classes.GameManager;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -74,20 +82,6 @@ public class FenetrePrincipale {
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
-
-        for (Poisson fish:
-                gM.getvP().getListPoissons()) {
-            ImageView imgViewPoisson = new ImageView();
-            imgViewPoisson.setImage(fish.getSpritePoisson());
-            imgViewPoisson.setFitHeight(50);
-            imgViewPoisson.setFitWidth(60);
-            imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
-            imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
-            fish.getCircleClick().translateYProperty().bind(fish.cooYPoissonProperty());
-            bigBorderPane.getChildren().add(imgViewPoisson);
-            bigBorderPane.getChildren().add(fish.getCircleClick());
-        }
-
         gM.getvP().getListPoissons().addListener(new ListChangeListener<Poisson>() {
 
             @Override
@@ -99,24 +93,70 @@ public class FenetrePrincipale {
                 }
 
                 while(change.next()) {
-                    for (Poisson fish :
-                            change.getAddedSubList()) {
-                        ImageView imgViewPoisson = new ImageView();
-                        imgViewPoisson.setImage(fish.getSpritePoisson());
-                        imgViewPoisson.setFitHeight(50);
-                        imgViewPoisson.setFitWidth(60);
-                        imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
-                        imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
-                        fish.getCircleClick().translateYProperty().bind(fish.cooYPoissonProperty());
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                bigBorderPane.getChildren().add(imgViewPoisson);
-                                bigBorderPane.getChildren().add(fish.getCircleClick());
-                            }
-                        });
+                    if(change.wasRemoved()) {
+                        for (Poisson fish :
+                                change.getRemoved()) {
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //bigBorderPane.getChildren().remove(fish.getCircleClick());
+                                    //bigBorderPane.getChildren().remove(fish.getSpritePoisson());
+                                }
+                            });
+                        }
+                    }
+
+                    if(change.wasAdded()) {
+                        for (Poisson fish :
+                                change.getAddedSubList()) {
+                            ImageView imgViewPoisson = new ImageView();
+                            imgViewPoisson.imageProperty().bind(fish.spritePoissonProperty());
+                            imgViewPoisson.fitHeightProperty().bind(fish.heightSpriteProperty());
+                            imgViewPoisson.fitWidthProperty().bind(fish.widthSpriteProperty());
+                            imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
+                            imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
+                            fish.getCircleClick().translateYProperty().bind(fish.cooYPoissonProperty());
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    bigBorderPane.getChildren().add(imgViewPoisson);
+                                }
+                            });
+                        }
                     }
                 }
+            }
+        });
+
+
+        gM.getTheTimer().actualTimeProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                System.out.println("truc2");
+                if(gM.getTheTimer().getActualTime() == 0) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            gM.getThread2().stop();
+                            gM.getThread1().stop();
+                            try {
+                                System.out.println("truc");
+                                Stage theStage = gM.getMyStage();
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreGameOver.fxml"));
+                                loader.setController(new FenetreGameOver(gM));
+                                Parent root = loader.load();
+                                Scene newScene = new Scene(root);
+                                newScene.getStylesheets().add("css/styles.css");
+                                theStage.setScene(newScene);
+                                theStage.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+                else
+                    System.out.println(gM.getTheTimer().getActualTime());
             }
         });
 
@@ -138,6 +178,11 @@ public class FenetrePrincipale {
             for(Poisson p : gM.getvP().getListPoissons()) {
                 Bounds boundsCirclePoisson = p.getCircleClick().getBoundsInParent();
                 if(boundsCirclePoisson.contains(x,y)) { //check si le click a lieu dans le cercle du poisson
+                    if(p.getClass().toString().equals("class classes.PoissonBombe")) {
+                        p.setHeightSprite(130);
+                        p.setWidthSprite(130);
+                        p.setSpritePoisson(new Image("img/bigBang.png"));
+                    }
                     p.setCatched(true);
                     gM.getLePecheur().setScorePecheur(gM.getLePecheur().getScorePecheur() + p.getValeur());
                     gM.getLePecheur().getListPoissonsAttrapes().add(p);

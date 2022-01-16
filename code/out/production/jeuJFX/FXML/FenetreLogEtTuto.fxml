@@ -7,17 +7,68 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Line?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
-            fx:id="borderPaneGeneral">
+            fx:id="borderPaneGeneral"
+            styleClass="contentCentered">
 
     <top>
-        <Text styleClass="p10"> </Text>
+        <VBox styleClass="contentCenteredp10">
+            <Text BorderPane.alignment="CENTER" styleClass="blackTitle">
+                <BorderPane.margin>
+                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+                </BorderPane.margin>
+                Tutoriel rapide
+            </Text>
+
+            <VBox styleClass="contentCenteredp25">
+                <Text styleClass="whiteText">Bienvenue dans canap'pêche ! Votre but dans ce jeu sera d'attraper</Text>
+                <Text styleClass="whiteText">un maximum de poissons en clickant tout simplement dessus.</Text>
+                <Text styleClass="whiteText">Mais attention, certains poissons sont meilleurs que d'autres...</Text>
+            </VBox>
+        </VBox>
     </top>
 
+    <center>
+        <HBox styleClass="contentCentered">
+            <VBox styleClass="contentCenteredp10">
+                <Text styleClass="aliceblueText25">Poisson classique</Text>
+                <ImageView><Image url="/img/fish.png" requestedHeight="100" requestedWidth="120"></Image></ImageView>
+                <Text styleClass="whiteText">Un poisson tout ce qu'il y a de plus classique.</Text>
+            </VBox>
+            <Line endY="120"></Line>
+            <VBox styleClass="contentCenteredp10">
+                <Text styleClass="aliceblueText25">Poisson doré</Text>
+                <ImageView><Image url="/img/poissondore.png" requestedHeight="100" requestedWidth="150"></Image></ImageView>
+                <Text styleClass="whiteText"> Les poissons dorés valent beaucoup de points !</Text>
+                <Text styleClass="whiteText"> Attrapes-les vite !</Text>
+            </VBox>
+            <Line endY="120"></Line>
+            <VBox styleClass="contentCenteredp10">
+                <Text styleClass="aliceblueText25">Poisson bombe !</Text>
+                <ImageView><Image url="/img/poissonbombe.png" requestedHeight="100" requestedWidth="120"></Image></ImageView>
+                <Text styleClass="whiteText"> Ne clickez pas sur ce poisson ou le</Text>
+                <Text styleClass="whiteText">résultat risque d'être... explosif ;)</Text>
+            </VBox>
+        </HBox>
+    </center>
+
     <bottom>
-        <Button fx:id="startTheGame">Start the Game !</Button>
+        <VBox styleClass="contentCentered">
+            <VBox styleClass="contentCenteredp10">
+                <Text styleClass="whiteText">Votre pseudo :</Text>
+                <TextField fx:id="pseudo" prefWidth="150" maxWidth="150"></TextField>
+            </VBox>
+
+            <Button fx:id="startTheGame" BorderPane.alignment="CENTER" styleClass="p10">
+                Un click ici pour Jouer !
+            </Button>
+        </VBox>
     </bottom>
 
 </BorderPane>

@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 public class AnimVaguePoisson extends Observateur{
     private VaguePoissons maVaguePoisson;
+    private GameManager gM;
 
-    public AnimVaguePoisson(VaguePoissons maVaguePoisson) {
+    public AnimVaguePoisson(VaguePoissons maVaguePoisson, GameManager gM) {
+        this.gM = gM;
         this.maVaguePoisson = maVaguePoisson;
     }
 
@@ -24,8 +26,10 @@ public class AnimVaguePoisson extends Observateur{
              getMaVaguePoisson().getListPoissons()) {
             if(!p.isCatched())
                 p.getDeplaceurPoisson().deplacer(p);
-            //if(p.getCooXPoisson() >= endOfScreen)
-                //listFishtoRemove.add(p);
+            /*
+            if(p.getCooXPoisson() >= endOfScreen)
+                listFishtoRemove.add(p);
+             */
         }
 
         /*
@@ -35,10 +39,12 @@ public class AnimVaguePoisson extends Observateur{
                 for (Poisson p:
                      listFishtoRemove) {
                     maVaguePoissonUpdated.getListPoissons().remove(p);
+                    gM.getvP().getListPoissons().remove(p);
                 }
                 setMaVaguePoisson(maVaguePoissonUpdated);
             }
-        });*/
+        });
+        */
     }
 
 
