@@ -106,7 +106,7 @@ public class FenetreHighscores {
                 case 4 -> varHBox = HBox4;
                 case 5 -> varHBox = HBox5;
             }
-            Text t = placeNameAndScore.get(iter);
+            Text t = placeNameAndScore.get(iter-1);
             varHBox.getChildren().add(t);
             t.setText(entry.getValue() + " avec un score de " + entry.getKey());
             iter++;

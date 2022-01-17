@@ -4,13 +4,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class ChargeurHS {
 
 
-    public HashMap<Integer, String> chargeHS() {
-        HashMap<Integer, String> mapTemp = new HashMap<Integer, String>();
-        HashMap<Integer, String> mapToReturn = new HashMap<Integer, String>();
+    public Map<Integer, String> chargeHS() {
+        Map<Integer, String> mapTemp = new TreeMap<>(
+                (Comparator<Integer>) (o1, o2) -> o2.compareTo(o1)
+        );
+        Map<Integer, String> mapToReturn = new TreeMap<>(
+                (Comparator<Integer>) (o1, o2) -> o2.compareTo(o1)
+        );
+
 
         try{
             String filename= "rsrc/data/dataHighscores.txt";

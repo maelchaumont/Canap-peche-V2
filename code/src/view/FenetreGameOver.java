@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,9 +34,16 @@ public class FenetreGameOver {
     private Button btnReplay;
     @FXML
     private Button btnBackToAccueil;
+    @FXML
+    private Button btnSaveScore;
+    @FXML
+    private Text score;
+    @FXML
+    private Text displaySavedOrNot;
 
     @FXML
     public void initialize() {
+        score.textProperty().bind(gM.getLePecheur().scorePecheurProperty().asString());
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //HANDLERS BUTTONS
@@ -71,6 +79,21 @@ public class FenetreGameOver {
                     newScene.getStylesheets().add("css/styles.css");
                     theStage.setScene(newScene);
                     theStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        btnSaveScore.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    if(!displaySavedOrNot.getText().equals("Score sauvegardé")) {
+                        gM.gethS().getsHS().sauvegardeHS(gM.getLePecheur().getScorePecheur(), gM.getLePecheur().getPseudo());
+                        gM.gethS().setMapHighScores(gM.gethS().getcHS().chargeHS());
+                        displaySavedOrNot.setText("Score sauvegardé");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
