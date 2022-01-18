@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class AnimVaguePoisson extends Observateur{
     private VaguePoissons maVaguePoisson;
-    private GameManager gM;
+    //private GameManager gM;
 
     public AnimVaguePoisson(VaguePoissons maVaguePoisson, GameManager gM) {
-        this.gM = gM;
+        //this.gM = gM;
         this.maVaguePoisson = maVaguePoisson;
     }
 

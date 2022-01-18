@@ -23,19 +23,17 @@ public class VaguePoissons {
         //5 poissons ou +
         if(getNbPoissons() > 5) {
             for (int i = 0; i < nbPoissons-2; i++) {
-                int poids = r.nextInt(high-low) + low;
-                listPoissons.add(new PoissonClassique(poids,10));
+                int valeur = r.nextInt(high-low) + low;
+                listPoissons.add(new PoissonClassique(valeur));
             }
-            int poids = r.nextInt(high-low) + low;
-            listPoissons.add(new PoissonBombe(poids,0));
-            poids = r.nextInt(high-low) + low;
-            listPoissons.add(new PoissonDore(poids,0));
+            listPoissons.add(new PoissonBombe(0)); //-50 rajouté dans le constructeur de PoissonBombe
+            listPoissons.add(new PoissonDore(0)); //+50 rajouté dans le constructeur de PoissonDore
         }
         // - de 5 poissons
         else {
             for (int i = 0; i < nbPoissons; i++) {
-                int poids = r.nextInt(high-low) + low;
-                listPoissons.add(new PoissonClassique(poids,10));
+                int valeur = r.nextInt(high-low) + low;
+                listPoissons.add(new PoissonClassique(valeur));
             }
         }
 

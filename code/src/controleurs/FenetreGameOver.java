@@ -1,4 +1,4 @@
-package view;
+package controleurs;
 
 import classes.GameManager;
 import javafx.event.EventHandler;

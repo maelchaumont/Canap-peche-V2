@@ -14,8 +14,8 @@ public class GameManager {
     private Pecheur lePecheur;
     private VaguePoissons vP;
     private Highscores hS;
-    private int millisSleepBoucleurRapide;
-    private int millisSleepBoucleurLent;
+    private final int millisSleepBoucleurRapide;
+    private final int millisSleepBoucleurLent;
     private Timer theTimer;
     private Thread thread1;
     private Thread thread2;
@@ -29,8 +29,8 @@ public class GameManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        millisSleepBoucleurRapide = 25;
-        millisSleepBoucleurLent = 10000;
+        millisSleepBoucleurRapide = 25; //25 millissec
+        millisSleepBoucleurLent = 7000; //7s sec
 
         vP.listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
             @Override

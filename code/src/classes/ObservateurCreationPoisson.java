@@ -13,6 +13,7 @@ public class ObservateurCreationPoisson extends Observateur{
     @Override
     public void update() {
         VaguePoissons nvVague = new VaguePoissons(7);
+        maVaguePoisson.setNbPoissons(maVaguePoisson.getNbPoissons()+nvVague.getNbPoissons());
         for (Poisson p:
                 nvVague.getListPoissons()) {
             maVaguePoisson.getListPoissons().add(p);

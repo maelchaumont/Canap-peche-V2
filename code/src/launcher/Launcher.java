@@ -1,7 +1,6 @@
 package launcher;
 
 
-import classes.highscores.ChargeurHS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import classes.GameManager;
-import view.FenetreAccueil;
+import controleurs.FenetreAccueil;
 
 import java.io.IOException;
-import java.util.Map;
 
 
 public class Launcher extends Application {

@@ -1,6 +1,4 @@
 25 -> truc
 42 -> hehe
-160 -> nvNom
-150 -> aa
 22 -> ge
-17 -> kk
+1184 -> eea

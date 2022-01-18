@@ -4,11 +4,9 @@ import javafx.beans.property.*;
 
 public class Timer extends Observateur{
     private float timeOf1LoopMillis;
-    private GameManager gM;
 
     //à donner en secondes
-    public Timer(float totalTimeSec, float timeOf1LoopMillis, GameManager gM) {
-        this.gM = gM;
+    public Timer(float totalTimeSec, float timeOf1LoopMillis) {
         this.timeOf1LoopMillis = timeOf1LoopMillis;
         setActualTime(totalTimeSec);
     }
@@ -18,10 +16,8 @@ public class Timer extends Observateur{
         if((getActualTime() - (timeOf1LoopMillis / 1000)) > 0) {
             setActualTime(getActualTime() - (timeOf1LoopMillis / 1000));
         }
-        else {
+        else
             setActualTime(0);
-            //gM.gameOver();
-        }
     }
 
     //binding

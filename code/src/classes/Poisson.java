@@ -8,15 +8,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public abstract class Poisson implements Observable {
-    private int poids;
     private int valeur;
     private Deplaceur deplaceurPoisson;
     private boolean isCatched;
     private Circle circleClick;
 
     //constructeur
-    public Poisson(Image myImage, int poids, int valeur) {
-        this.poids = poids;
+    public Poisson(Image myImage, int valeur) {
         this.valeur = valeur;
         setSpritePoisson(myImage);
         setHeightSprite(50);
@@ -67,14 +65,6 @@ public abstract class Poisson implements Observable {
 
     public void setDeplaceurPoisson(Deplaceur deplaceurPoisson) {
         this.deplaceurPoisson = deplaceurPoisson;
-    }
-
-    public int getPoids() {
-        return poids;
-    }
-
-    public void setPoids(int poids) {
-        this.poids = poids;
     }
 
     public int getValeur() {
