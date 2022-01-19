@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -31,6 +32,8 @@ public class FenetreGameOver {
     @FXML
     private BorderPane bigBorderPane;
     @FXML
+    private ImageView imgViewGameOver;
+    @FXML
     private Button btnReplay;
     @FXML
     private Button btnBackToAccueil;
@@ -43,6 +46,8 @@ public class FenetreGameOver {
 
     @FXML
     public void initialize() {
+        Image img = new Image("img/imgGameOver.jpg");
+        imgViewGameOver.setImage(img);
         score.textProperty().bind(gM.getLePecheur().scorePecheurProperty().asString());
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 

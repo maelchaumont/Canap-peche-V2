@@ -13,37 +13,27 @@
             fx:id="bigBorderPane">
 
     <top>
-        <HBox styleClass="centeredAndBackWhite">
+        <HBox fx:id="topHBox" styleClass="contentCentered">
             <Text>Temps restant : </Text>
             <Text fx:id="timeDisplay" style="fx-padding:10px;"> </Text>
             <Text> secondes</Text>
         </HBox>
     </top>
 
-    <bottom>
-        <HBox>
-            <AnchorPane fx:id="anchor">
-                <TextField fx:id="textFieldTest" >
-                    Test
-                </TextField>
-            </AnchorPane>
-        </HBox>
-    </bottom>
-
     <center>
         <HBox>
-            <ImageView fx:id="imgView1"> </ImageView>
-
-            <VBox fx:id="stats" styleClass="centeredAndBackWhite">
+            <VBox fx:id="stats" styleClass="contentCentered">
                 <HBox>
                     <Text>Pseudo : </Text>
-                    <Text fx:id="statsPseudo"> </Text>
+                    <Text fx:id="statsPseudo" styleClass="boldText"> </Text>
                 </HBox>
                 <HBox>
                     <Text>Score : </Text>
-                    <Text fx:id="statsScore"> </Text>
+                    <Text fx:id="statsScore" styleClass="boldText"> </Text>
                 </HBox>
             </VBox>
+
+            <ImageView fx:id="imgView1"> </ImageView>
         </HBox>
     </center>
 

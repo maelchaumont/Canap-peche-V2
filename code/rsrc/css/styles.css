@@ -28,6 +28,16 @@
     -fx-font-size: 15;
 }
 
+.goldenText {
+    -fx-fill: goldenrod;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.boldText{
+    -fx-font-weight: bold;
+}
+
 .centeredAndBackWhite {
     -fx-background-color: white;
     -fx-alignment: center;
@@ -50,4 +60,9 @@
     -fx-fill: black;
     -fx-font-size: 30;
     -fx-font-weight: bold;
+}
+
+.btnAccueil {
+    -fx-background-color: slategray, aliceblue;
+    -fx-padding: 7px;
 }

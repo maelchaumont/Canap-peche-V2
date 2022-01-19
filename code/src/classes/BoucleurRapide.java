@@ -20,7 +20,7 @@ public class BoucleurRapide extends BoucleurAbstrait{
             //voir dans la classe mère
             notifier();
             try {
-                System.out.println("testboucleur");
+                //System.out.println("testboucleur");
                 Thread.sleep(getMillisSleep());
             } catch (InterruptedException e) {
                 e.printStackTrace();

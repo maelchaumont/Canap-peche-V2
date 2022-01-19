@@ -7,25 +7,27 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
             fx:id="bigBorderPane">
 
     <center>
-        <VBox styleClass="contentCenteredp">
+        <VBox styleClass="contentCenteredp10">
+            <ImageView fx:id="imgViewGameOver" fitWidth="300" preserveRatio="true"/>
             <VBox styleClass="contentCenteredp25">
                 <Button fx:id="btnReplay" styleClass="aliceblueText25">Rejouer !</Button>
                 <Button fx:id="btnBackToAccueil" styleClass="aliceblueText25">Retour à l'Accueil</Button>
-            </VBox>
-
-            <VBox styleClass="contentCentered">
                 <HBox styleClass="contentCentered">
-                    <Text>Votre score :</Text>
-                    <Text fx:id="score"></Text>
-                    <Button fx:id="btnSaveScore" styleClass="aliceblueText25">Sauvegarder le score</Button>
+                    <Text styleClass="goldenText">Votre score :</Text>
+                    <Text styleClass="goldenText" fx:id="score"></Text>
                 </HBox>
-                <Text fx:id="displaySavedOrNot" styleClass="whiteText"></Text>
+                <VBox styleClass="contentCentered">
+                    <Button fx:id="btnSaveScore" styleClass="aliceblueText25">Sauvegarder le score</Button>
+                    <Text fx:id="displaySavedOrNot" styleClass="whiteText"></Text>
+                </VBox>
             </VBox>
         </VBox>
     </center>

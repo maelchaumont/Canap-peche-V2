@@ -31,13 +31,6 @@ public class GameManager {
         }
         millisSleepBoucleurRapide = 25; //25 millissec
         millisSleepBoucleurLent = 7000; //7s sec
-
-        vP.listPoissonsProperty().addListener(new ListChangeListener<Poisson>() {
-            @Override
-            public void onChanged(Change<? extends Poisson> c) {
-                System.out.println("(temporaire) : listPoisson changée");
-            }
-        });
     }
 
 

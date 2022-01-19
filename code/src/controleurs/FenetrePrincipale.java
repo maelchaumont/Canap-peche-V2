@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -30,17 +31,25 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FenetrePrincipale {
     private Image img1 = new Image("/img/fullLake.png");
     private Button btnAccueil = new Button("Accueil");
     private GameManager gM;
+    private ArrayList<ImageView> listImageViews;
 
     @FXML
     private BorderPane bigBorderPane;
 
     @FXML
     private Text timeDisplay;
+
+    @FXML
+    private VBox stats;
+
+    @FXML
+    private HBox topHBox;
 
     @FXML
     private Text statsPseudo;
@@ -51,8 +60,6 @@ public class FenetrePrincipale {
     @FXML
     private ImageView imgView1;
 
-    @FXML
-    private TextField textFieldTest;
 
     public FenetrePrincipale(GameManager gM) {
         this.gM = gM;
@@ -79,6 +86,7 @@ public class FenetrePrincipale {
 
         bigBorderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
+        listImageViews = new ArrayList<>();
         gM.getvP().getListPoissons().addListener(new ListChangeListener<Poisson>() {
 
             @Override
@@ -96,8 +104,8 @@ public class FenetrePrincipale {
                             Platform.runLater(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //bigBorderPane.getChildren().remove(fish.getCircleClick());
-                                    //bigBorderPane.getChildren().remove(fish.getSpritePoisson());
+                                    //int indexOfFish = gM.getvP().getListPoissons().indexOf(fish);
+                                    //bigBorderPane.getChildren().remove(listImageViews.get(indexOfFish));
                                 }
                             });
                         }
@@ -113,6 +121,7 @@ public class FenetrePrincipale {
                             imgViewPoisson.translateXProperty().bind(fish.cooXPoissonProperty());
                             imgViewPoisson.translateYProperty().bind(fish.cooYPoissonProperty());
                             fish.getCircleClick().translateYProperty().bind(fish.cooYPoissonProperty());
+                            listImageViews.add(imgViewPoisson);
                             Platform.runLater(new Runnable() {
                                 @Override
                                 public void run() {
@@ -129,7 +138,6 @@ public class FenetrePrincipale {
         gM.getTheTimer().actualTimeProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                System.out.println("truc2");
                 if(gM.getTheTimer().getActualTime() == 0) {
                     Platform.runLater(new Runnable() {
                         @Override
@@ -137,7 +145,6 @@ public class FenetrePrincipale {
                             gM.getThread2().stop();
                             gM.getThread1().stop();
                             try {
-                                System.out.println("truc");
                                 Stage theStage = gM.getMyStage();
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreGameOver.fxml"));
                                 loader.setController(new FenetreGameOver(gM));
@@ -161,24 +168,26 @@ public class FenetrePrincipale {
         bigBorderPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
             double x = event.getSceneX();
             double y = event.getSceneY();
-            textFieldTest.setText("Rentre dans le handler. coo :"+ x + "," + y);
-            textFieldTest.prefColumnCountProperty().bind(textFieldTest.textProperty().length());
 
             //test de l'emplacement du click
             Circle circletest = new Circle();
             bigBorderPane.getChildren().add(circletest);
             circletest.setRadius(10);
-            circletest.setFill(Color.WHITE);
+            circletest.setFill(Color.TRANSPARENT);
             circletest.setCenterX(x);
             circletest.setCenterY(y);
             System.out.println("xclick :" + x + " yclick:" + y);
             for(Poisson p : gM.getvP().getListPoissons()) {
                 Bounds boundsCirclePoisson = p.getCircleClick().getBoundsInParent();
                 if(boundsCirclePoisson.contains(x,y)) { //check si le click a lieu dans le cercle du poisson
-                    if(p.getClass().toString().equals("class classes.PoissonBombe")) {
-                        p.setHeightSprite(130);
-                        p.setWidthSprite(130);
-                        p.setSpritePoisson(new Image("img/bigBang.png"));
+                    switch (p.getClass().toString()) {
+                        case "class classes.PoissonBombe" -> {
+                            p.setHeightSprite(130);
+                            p.setWidthSprite(130);
+                            p.setSpritePoisson(new Image("img/bigBang.png"));
+                        }
+                        case "class classes.PoissonDore" -> p.setSpritePoisson(new Image("img/poissondorecatched.png"));
+                        case "class classes.PoissonClassique" -> p.setSpritePoisson(new Image("img/fishCatched.png"));
                     }
                     p.setCatched(true);
                     gM.getLePecheur().setScorePecheur(gM.getLePecheur().getScorePecheur() + p.getValeur());
@@ -192,27 +201,8 @@ public class FenetrePrincipale {
             //poissontest.getDeplaceurPoisson().deplacer(poissontest, 200, 200);
         });
 
-        /*
-        bigBorderPane.setRight(btnAccueil);
-        //click de l'utilisateur sur le bouton d'accueil
-        btnAccueil.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    Stage theStage = gM.getMyStage();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/FenetreAccueil.fxml"));
-                    loader.setController(new FenetreAccueil(gM));
-                    Parent root = loader.load();
-                    Scene theScene = new Scene(root);
-                    theScene.getStylesheets().add("css/styles.css");
-                    theStage.setScene(theScene));
-                    theStage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        */
+        stats.setBackground(new Background(new BackgroundFill(Color.SILVER, CornerRadii.EMPTY, Insets.EMPTY)));
+        topHBox.setBackground(new Background(new BackgroundFill(Color.POWDERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
 

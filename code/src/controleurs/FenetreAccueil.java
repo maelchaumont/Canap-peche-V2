@@ -59,6 +59,8 @@ public class FenetreAccueil {
         vboxButtons.setAlignment(Pos.CENTER);
         btnTutoJouer.setMinWidth(50);
         btnHS.setMinWidth(75);
+        btnTutoJouer.getStyleClass().add("btnAccueil");
+        btnHS.getStyleClass().add("btnAccueil");
         vboxButtons.getChildren().add(btnTutoJouer);
         vboxButtons.getChildren().add(btnHS);
         borderPaneCenter.setCenter(vboxButtons);
