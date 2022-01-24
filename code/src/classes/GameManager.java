@@ -36,6 +36,7 @@ public class GameManager {
 
 
     public void startNewGame() {
+        vP = new VaguePoissons(7);
         lePecheur.setScorePecheur(0);
         BoucleurRapide boucleurRapide = new BoucleurRapide(millisSleepBoucleurRapide, vP, this);
         BoucleurLent boucleurLent = new BoucleurLent(millisSleepBoucleurLent, vP);
